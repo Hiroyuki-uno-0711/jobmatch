@@ -70,3 +70,15 @@
       </div>
   </div>
 </div>
+
+<div class="row">
+    <% if @job_information.favorited_by?(current_user) %>
+      <%= link_to job_information_favorites_path(@job_information), method: :delete do %>
+
+    <% else %>
+
+      <%= link_to book_favorites_path(@bookk), method: :post do %>
+
+
+    <% end %>
+</div>
