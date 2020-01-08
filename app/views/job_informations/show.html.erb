@@ -72,13 +72,14 @@
 </div>
 
 <div class="row">
+
     <% if @job_information.favorited_by?(current_user) %>
-      <%= link_to job_information_favorites_path(@job_information), method: :delete do %>
+      <%= link_to '興味を取り消す', job_information_favorites_path(@job_information), method: :delete, class: "btn danger" %>
 
     <% else %>
 
-      <%= link_to book_favorites_path(@bookk), method: :post do %>
-
+      <%= link_to '興味がある' , job_information_favorites_path(@job_information), method: :post, class: "btn primary" %>
 
     <% end %>
+
 </div>
