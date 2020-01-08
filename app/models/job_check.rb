@@ -1,0 +1,4 @@
+class JobCheck < ApplicationRecord
+
+
+end
