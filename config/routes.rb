@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get 'about' => 'tops#about'
 
   # 求人票関連
-  resources :job_informations, only: [:new, :create, :index, :show, :edit, :destroy, :update]
+  resources :job_informations, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+    resource :favorites, only: [:create, :destroy]
+  end
 
   # 職種診断用のページ
   get 'accounting' => 'jobchecks#accounting'

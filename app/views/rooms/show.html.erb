@@ -1,4 +1,4 @@
-<h4 class="rooms-title">トークルーム</h4>
+<h4 class="rooms-title">トークルーム</h4><br>
   <% @entries.each do |e| %>
     <strong>
       <%= link_to e.user do %>
@@ -6,7 +6,7 @@
       <% end %>
       <%= e.user.last_name %> <%= e.user.first_name %>さん
     </strong>
-  <% end %>
+  <% end %><br><br>
 
 
 <div class="chats">
@@ -17,7 +17,7 @@
       <%= f.hidden_field :room_id, value: @room.id %>
       <%= f.submit "投稿",class: 'form-submit'%>
     <% end %>
-  </div>
+  </div><br><br>
 
   <div class="chat">
     <% if @messages.present? %>
@@ -33,7 +33,7 @@
             <br>
             <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
           </div>
-        </div>
+        </div><br>
       <% end %>
     <% end %>
   </div>
