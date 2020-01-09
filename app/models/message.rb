@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
 
-  belongs_to :user
+  belongs_to :send, class_name: "User"
+  belongs_to :receive, class_name: "User"
   belongs_to :room
 
   def create_notification_message!(current_user)

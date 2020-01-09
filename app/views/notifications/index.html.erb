@@ -10,7 +10,9 @@
     <table class="table table-striped">
         <% notifications.each do |notification| %>
           <tr>
-            <%= render notification, notification: notification %>
+            <td>
+              <%= render notification, notification: notification %>
+            </td>
           </tr>
         <% end %>
     </table>

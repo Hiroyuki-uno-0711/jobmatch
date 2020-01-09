@@ -10,8 +10,6 @@ class MessagesController < ApplicationController
       flash[:alert] = "メッセージ送信に失敗しました。"
     end
 
-    @message.create_notification_message!(current_user)
-
     redirect_to "/rooms/#{@message.room_id}"
 
   end

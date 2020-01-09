@@ -136,10 +136,17 @@
     </div>
 
   <div class="col-xs-7">
-    <h4>職務概要</h4>
-    <div class="box1">
-      <%= simple_format(@user.career_detail) %>
-    </div>
+    <% if @user.user_status == '一般ユーザー' %>
+      <h4>職務概要</h4>
+      <div class="box1">
+        <%= simple_format(@user.career_detail) %>
+      </div>
+    <% else %>
+      <h4>実績</h4>
+      <div class="box1">
+        <%= simple_format(@user.result) %>
+      </div>
+    <% end %>
   </div>
 
 </div><br><br>
