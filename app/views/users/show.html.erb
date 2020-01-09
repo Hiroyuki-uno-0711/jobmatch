@@ -88,7 +88,7 @@
                 <%= link_to '求人を探す', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'CAを探す', new_job_information_path, class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
               </span><br><br>
               <span>
-                <%= link_to '転職診断', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
+                <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
               </span><br><br>
               <span>
                 <%= link_to 'フォロー一覧', follows_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'フォロワー一覧', followers_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>

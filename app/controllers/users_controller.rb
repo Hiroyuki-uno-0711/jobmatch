@@ -68,6 +68,11 @@ class UsersController < ApplicationController
   end
 
 
+  def favorites
+    @user = User.find(params[:id])
+    @job_informations = @user.favorites
+  end
+
   private
 
 

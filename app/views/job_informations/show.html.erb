@@ -11,43 +11,58 @@
    </div>
  </div>
 
-<div class="row"><br>
+<br>
+
+<div class="row">
   <div class="col-xs-5">
     <%= attachment_image_tag @job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "350x300", class: "margin-bottom" %>
-      </div>
+  </div>
 
-      <div class="col-xs-7">
-        <h4>求人情報</h4>
-       <table class="table table-striped">
-        <tbody>
+  <div class="col-xs-7">
+    <h4>求人情報</h4>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>募集職種</th>
+          <td><%= @job_information.genre %></td>
+        </tr>
 
-          <tr>
-            <th>募集職種</th>
-            <td><%= @job_information.genre %></td>
-          </tr>
+        <tr>
+          <th>勤務地</th>
+          <td><%= @job_information.area %></td>
+        </tr>
 
-          <tr>
-            <th>勤務地</th>
-            <td><%= @job_information.area %></td>
-          </tr>
+        <tr>
+          <th>想定年収</th>
+          <td><%= @job_information.income %>万</td>
+        </tr>
 
-          <tr>
-            <th>想定年収</th>
-            <td><%= @job_information.income %>万</td>
-          </tr>
+        <tr>
+          <th>企業名</th>
+          <td><%= @job_information.company %></td>
+        </tr>
 
-          <tr>
-            <th>企業名</th>
-            <td><%= @job_information.company %></td>
-          </tr>
+        <tr>
+          <th>担当キャリアアドバイザー名</th>
+          <td><%= @job_information.user.last_name %> <%= @job_information.user.first_name %></td>
+        </tr>
+      </tbody>
+    </table>
 
-          <tr>
-            <th>担当キャリアアドバイザー名</th>
-            <td><%= @job_information.user.last_name %> <%= @job_information.user.first_name %></td>
-          </tr>
+    <% if current_user.user_status == '一般ユーザー' %>
 
-        </tbody>
-       </table>
+      <% if @job_information.favorited_by?(current_user) %>
+
+        <%= link_to "興味を取り消す", job_information_favorites_path(@job_information), method: :delete, class: "btn btn-danger btn-lg", :style=> "width:30%;" %>
+
+      <% else %>
+
+        <%= link_to "興味がある", job_information_favorites_path(@job_information), method: :post, class: "btn btn-primary btn-lg", :style=> "width:30%;" %>
+
+      <% end %>
+
+    <% end %>
+
   </div>
 </div>
 
@@ -69,17 +84,4 @@
         <%= simple_format(@job_information.detail) %>
       </div>
   </div>
-</div>
-
-<div class="row">
-
-    <% if @job_information.favorited_by?(current_user) %>
-      <%= link_to '興味を取り消す', job_information_favorites_path(@job_information), method: :delete, class: "btn danger" %>
-
-    <% else %>
-
-      <%= link_to '興味がある' , job_information_favorites_path(@job_information), method: :post, class: "btn primary" %>
-
-    <% end %>
-
 </div>

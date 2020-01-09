@@ -13,11 +13,14 @@ Rails.application.routes.draw do
     get :follows, on: :member
     get :followers, on: :member
     get :form, on: :member
+    get :favorites, on: :member
   end
+  resources :notifications, only: :index
 
   # メッセージ機能関連
-  resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
+  resources :messages, only: [:create]
+
 
   root 'tops#top'
   get 'about' => 'tops#about'

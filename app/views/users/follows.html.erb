@@ -1,4 +1,4 @@
-<h1>フォロー一覧</h1>
+<h1>フォロー 一覧</h1>
 <br>
 
 <table class="table table-striped">
@@ -33,11 +33,7 @@
       </td>
 
       <td>
-        <% if user.followed_by?(current_user) %>
-          <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete %></p>
-        <% else %>
-          <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
-        <% end %>
+          <p><%=link_to "フォロー解除", user_relationships_path(user.id), method: :delete %></p>
       </td>
 
     </tr>

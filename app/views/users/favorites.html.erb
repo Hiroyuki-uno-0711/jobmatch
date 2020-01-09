@@ -1,0 +1,38 @@
+<h1>お気に入り求人一覧</h1>
+<br>
+
+<table class="table table-striped">
+
+  <thead>
+    <th></th>
+    <th>求人名</th>
+    <th>企業名</th>
+    <th>作成日</th>
+    <th></th>
+  </thead>
+
+  <% @job_informations.each do |job| %>
+    <tr>
+
+      <td>
+        <%= link_to job_information_path(job) do %>
+          <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        <% end %>
+      </td>
+
+      <td>
+        <%= job.title %>
+      </td>
+
+      <td>
+        <%= job.company %>
+      </td>
+
+      <td>
+          <p><%=link_to "興味を取り消す", job_information_favorites_path(job), method: :delete %></p>
+      </td>
+
+    </tr>
+  <% end %>
+
+</table>
