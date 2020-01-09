@@ -35,6 +35,10 @@
               <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
             </li>
 
+            <li class="navlist">
+              <%= link_to " お知らせ", notifications_path, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
+            </li>
+
           <% else %>
             <li class="navlist">
               <%= link_to ' ログイン', new_user_session_path, class: "glyphicon glyphicon-edit sign_up", :style=>"color:white;"%>

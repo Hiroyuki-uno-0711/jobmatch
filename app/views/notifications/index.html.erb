@@ -1,0 +1,25 @@
+<h1>お知らせ</h1>
+
+<!-- 自分の投稿に対するいいね、コメントは通知に表示しない -->
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<% pp notifications %>
+
+<br>
+
+<% if notifications.exists? %>
+    <table class="table table-striped">
+        <% notifications.each do |notification| %>
+          <tr>
+            <%= render notification, notification: notification %>
+          </tr>
+        <% end %>
+    </table>
+
+    <%= paginate notifications %>
+
+<% else %>
+
+  <p>通知はありません</p>
+
+<% end %>
+
