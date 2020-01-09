@@ -87,7 +87,7 @@ class JobchecksController < ApplicationController
      when '一般事務', '人事', '経理', '総務'
        career = 0.5
      when '販売サービス', 'システムエンジニア'
-       career = 0.8
+       career = 0.6
     end
 
     case current_user.age
@@ -136,7 +136,54 @@ class JobchecksController < ApplicationController
   end
 
 
+  def real_estate_sales
 
+    real_estate_sales = 0
+
+    case current_user.career
+     when '有形営業', '無形営業'
+       career = 0.9
+     when '商品サービス企画', '物流倉庫管理'
+       career = 0.7
+     when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
+       career = 0.6
+     when '販売サービス'
+       career = 0.8
+    end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    real_estate_sales = career * age * career_age * 100
+    @real_estate_sales = real_estate_sales
+
+
+    case current_user.career
+     when '有形営業', '無形営業'
+      @memo = '不動産営業には、長期的な視点や、高額な予算を取り扱える提案力、課題解決力が求められます。また前のめりで押しの強い人柄が好まれる傾向にあります。顧客折衝経験が活きるため、賃貸などの個人営業であればさほどハードルは高くありませんが、大手ゼネコンや住宅メーカーなどの企業は高額商品を売ってきた経験値を強くみるため、間口が広いとは言えません。'
+
+     when '商品サービス企画', '物流倉庫管理', '一般事務', '経理', '総務', '人事', 'システムエンジニア', '販売サービス'
+      @memo = '不動産営業には、長期的な視点や、高額な予算を取り扱える提案力、課題解決力が求められます。また前のめりで押しの強い人柄が好まれる傾向にあります。他の営業職と同じく、顧客折衝経験が少ない場合完全未経験としてみられるため、ハードルはやや高いです。ただ1から営業力を身に着けたい意欲があれば、未経験歓迎求人は多い職種であるため、チャレンジできる余地はある職種となります。その際は飛込みなどの新規開拓からスタートする覚悟が必要です。'
+
+    end
+  end
 
 
 
