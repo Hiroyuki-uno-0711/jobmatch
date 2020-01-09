@@ -186,6 +186,60 @@ class JobchecksController < ApplicationController
   end
 
 
+  def mr_sales
+
+    mr_sales = 0
+
+    case current_user.career
+     when '有形営業'
+       career = 0.7
+     when '無形営業'
+       career = 0.6
+     when '商品サービス企画'
+       career = 0.5
+     when '物流倉庫管理'
+       career = 0.45
+     when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
+       career = 0.3
+     when '販売サービス'
+       career = 0.45
+    end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    mr_sales = career * age * career_age * 100
+    @mr_sales = mr_sales
+
+
+    case current_user.career
+     when '有形営業', '無形営業'
+      @memo = 'MRは、医療技術の発達により今後も需要が高まっていく職種といえます。ただ専門的知識を問われる職種であるため、地頭や高い提案能力が求められる要素となり、転職のハードルは非常に高い職種といえるでしょう。これまでの顧客折衝経験が活きる要素はありますが、高度な専門知識が問われるMRよりは、医療機器営業などでステップを積んでから転職することが現実的な選択肢となります。'
+
+     when '商品サービス企画', '物流倉庫管理', '一般事務', '経理', '総務', '人事', 'システムエンジニア', '販売サービス'
+      @memo = 'MRは、医療技術の発達により今後も需要が高まっていく職種といえます。ただ専門的知識を問われる職種であるため、地頭や高い提案能力が求められる要素となり、転職のハードルは非常に高い職種といえるでしょう。高度な専門知識が問われるMRよりは、医療機器営業などでステップを積んでから転職することが現実的な選択肢となります。医療機器営業で未経験OK求人は多いとはいえないため、選り好みはしないよう注意しましょう。'
+
+    end
+  end
+
+
 
 
 
