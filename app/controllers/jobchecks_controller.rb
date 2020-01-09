@@ -370,6 +370,55 @@ class JobchecksController < ApplicationController
   end
 
 
+  def service_planning
+
+    service_planning = 0
+
+    case current_user.career
+     when '有形営業', '無形営業'
+       career = 0.4
+     when '商品サービス企画'
+       career = 0.65
+     when '一般事務', '経理', '総務', 'システムエンジニア', '人事', '物流倉庫管理'
+       career = 0.3
+     when '販売サービス'
+       career = 0.35
+    end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    service_planning = career * age * career_age * 100
+    @service_planning = service_planning
+
+
+    case current_user.career
+     when '有形営業', '無形営業', '物流倉庫管理', '一般事務', '経理', '総務', '人事', 'システムエンジニア', '販売サービス'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティングが力が求められます。求められるスキルの専門性が高い上に、募集人員も1名枠の求人がほとんどであるため、極めて狭き門となります。ネット広告の市場が活発しているため、Web広告代理店やリサーチ会社などで経験を積んだ後、ステップアップとして転職するのは1つの手です。'
+
+     when '商品サービス企画'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティングが力が求められます。これまで経験した業界や、取り扱っていた商品に親和性があれば、経験を買ってもらいやすい職種ですが、昨今ネット広告の市場が活発している影響から、事業会社の商品企画担当出身者よりも、Web広告の知見がある代理店出身者を採用する傾向も多くあります。'
+    end
+  end
+
+
 
 
 
