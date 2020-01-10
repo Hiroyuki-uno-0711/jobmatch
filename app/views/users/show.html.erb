@@ -1,14 +1,16 @@
-<% if current_user == @user %>
-  <div class="row">
-    <div class="col-xs-5">
+<div class="row margin-bottom-15px">
+  <div class="col-xs-5">
+    <% if current_user == @user %>
       <h2>マイページ</h2>
-    </div>
-    <div class="col-xs-7"></div>
+    <% else %>
+      <h2>ユーザー情報</h2>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-xs-7"></div>
+</div>
 
 
-<div class="row"><br>
+<div class="row margin-bottom-35px">
   <div class="col-xs-5">
     <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "300x300", class: "margin-bottom" %>
       </div>
@@ -74,61 +76,96 @@
   </div>
 </div>
 
-<br><br><br>
 
 <div class="row">
   <div class="col-xs-5">
-    <div class="row">
-      <br><br>
-    </div>
-    <div class="row">
+    <div class="row margin-bottom-35px"></div>
+    <div class="row margin-bottom-45px">
         <div class="col-xs-12">
           <% if current_user == @user && @user.user_status == '一般ユーザー' %>
-              <span>
-                <%= link_to '求人を探す', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'CAを探す', new_job_information_path, class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span><br><br>
-              <span>
-                <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span><br><br>
-              <span>
-                <%= link_to 'フォロー一覧', follows_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'フォロワー一覧', followers_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span>
+              <table>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to '求人を探す', job_informations_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to 'CAを探す', users_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to 'フォロー一覧', follows_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to 'フォロワー一覧', followers_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+              </table>
+
 
           <% elsif current_user == @user && @user.user_status == 'キャリアアドバイザー' %>
 
-              <span>
-                <%= link_to 'タスク管理', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to '求人追加', new_job_information_path, class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span><br><br>
-              <span>
-                <%= link_to '求職者検索', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span><br><br>
-              <span>
-                <%= link_to 'フォロー一覧', follows_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>　<%= link_to 'フォロワー一覧', followers_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-              </span>
+             <table>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to 'タスク管理', job_informations_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to '求人追加', new_job_information_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to 'ユーザーを探す', users_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-padding">
+                    <%= link_to 'フォロー一覧', follows_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                  <td class="td-padding">
+                    <%= link_to 'フォロワー一覧', followers_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                  </td>
+                </tr>
+              </table>
 
           <% else %>
 
-            <% if @user.followed_by?(current_user) %>
-              <p>
-                <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete, class: "btn btn-danger btn-lg", :style=> "width:45%;" %>
-              </p>
-              <% else %>
-                <p>
-                  <%=link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
-                </p>
-            <% end %>
-
-            <% if @isRoom == true %>
-                <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a></p>
-            <% else %>
-                <%= form_for @room do |f| %>
-                  <%= fields_for @entry do |e| %>
-                  <%= e.hidden_field :user_id, value: @user.id %>
-                  <% end %>
-                <%= f.submit "チャットする", class: "btn btn-primary btn-lg", :style=> "width:45%;" %>
+          <table>
+            <tr>
+              <td class="td-padding">
+                <% if @user.followed_by?(current_user) %>
+                  <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete, class: "btn btn-danger btn-lg", :style=> "width:150px;" %>
+                <% else %>
+                  <%=link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg", :style=> "width:150px;" %>
                 <% end %>
-            <% end %>
+              </td>
 
+              <td class="td-padding">
+                <% if @isRoom == true %>
+                  <%= link_to 'チャットへ', room_path(@roomId), class: "btn btn-danger btn-lg", :style=> "width:150px;" %>
+                <% else %>
+                  <%= form_for @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "チャットする", class: "btn btn-primary btn-lg", :style=> "width:150px;" %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
           <% end %>
 
         </div>
@@ -149,7 +186,7 @@
     <% end %>
   </div>
 
-</div><br><br>
+</div>
 
 <% if @user.user_status == 'キャリアアドバイザー' %>
   <div class="row">

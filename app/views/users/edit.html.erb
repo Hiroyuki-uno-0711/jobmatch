@@ -1,93 +1,91 @@
-<h2>ユーザー情報編集</h2>
+<h2 class="margin-bottom-35px">ユーザー情報編集</h2>
 
-<%= form_for(@user) do |f| %><br>
+<%= form_for(@user) do |f| %>
 
     <div class="field">
       <%= f.label :氏名 %>
         <%= f.text_field :last_name, autofocus: true, class:"form-control" ,placeholder: "姓", :style=> "width:20%;" %>
           <%= f.text_field :first_name, autofocus: true, class:"form-control" ,placeholder: "名" ,:style=> "width:20%;" %>
-    </div> <br>
+    </div>
 
     <div class="field">
       <%= f.label :フリガナ %>
         <%= f.text_field :last_name_kana, autofocus: true, class:"form-control" ,placeholder: "フリガナ性", :style=> "width:20%;" %>
           <%= f.text_field :first_name_kana, autofocus: true, class:"form-control" ,placeholder: "フリガナ名", :style=> "width:20%;" %>
-    </div> <br>
+    </div>
 
     <% if @user.user_status == '一般ユーザー' %>
 
     		<div class="field">
     		  <%= f.label :年齢 %>
     		    <%= f.select :age, [20,21,22,23,24,25,26,27,28,29], {}, class: "form-control", :style=> "width:7%;" %>
-    		</div> <br>
+    		</div>
 
     <% else %>
 
         <div class="field">
           <%= f.label :年齢 %>
             <%= f.text_field :age, autofocus: true, class:"form-control" ,placeholder: "半角数字", :style=> "width:10%;" %>
-        </div> <br>
+        </div>
 
     <% end %>
 
     <div class="field">
-      <%= f.label :性別 %><br>
+      <%= f.label :性別 %>
         <%= f.select :gender, User.genders.keys.to_a, {}, class:"form-control", :style=> "width:10%;" %>
-    </div> <br>
+    </div>
 
     <div class="field">
       <%= f.label :電話番号 %>
         <%= f.text_field :phone_number,autofocus: true, class:"form-control" ,placeholder: "ハイフンなし", :style=> "width:30%;" %>
-    </div> <br>
+    </div>
 
     <div class="field">
       <%= f.label :メールアドレス %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" ,placeholder: "メールアドレス", :style=> "width:40%;" %>
-    </div> <br>
+    </div>
 
     <div class="field">
       <%= f.label :プロフィール画像 %>
         <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-    </div> <br>
+    </div>
 
     <% if @user.user_status == '一般ユーザー' %>
 
         <div class="field">
-          <%= f.label :経験職種 %><br>
+          <%= f.label :経験職種 %>
             <%= f.select :career, User.careers.keys.to_a, {}, class:"form-control", :style=> "width:30%;" %>
-        </div> <br>
+        </div>
 
   	    <div class="field">
   	      <%= f.label :経験年数 %>
   	        <%= f.select :career_age, [1,2,3,4,5,6,7,8,9,10], {}, class: "form-control", :style=> "width:7%;" %>
-  	    </div> <br>
+  	    </div>
 
   	    <div class="field">
   	      <%= f.label :職歴概要 %>
   	        <%= f.text_area :career_detail, autofocus: true, class:"form-control" ,placeholder: "実績やアピールポイントなど", :style=> "width:50%;" %>
-  	    </div> <br>
+  	    </div>
 
 	  <% else %>
 
         <div class="field">
-            <%= f.label :専門領域 %><br>
+            <%= f.label :専門領域 %>
               <%= f.select :expert, User.experts.keys.to_a, {}, class:"form-control", :style=> "width:20%;" %>
-        </div><br>
+        </div>
 
         <div class="field">
           <%= f.label :あいさつ文 %>
             <%= f.text_field :comment, autofocus: true, class:"form-control" ,placeholder: "ひとこと", :style=> "width:40%;" %>
-        </div><br>
+        </div>
 
         <div class="field">
           <%= f.label :実績 %>
             <%= f.text_area :result, autofocus: true, class:"form-control" ,placeholder: "これまでの決定実績", :style=> "width:40%;" %>
-        </div><br>
+        </div>
 
   <% end %>
 
-  <%= f.submit "登録情報更新", class: "btn btn-primary" %>
+  <%= f.submit "登録情報を更新", class: "btn btn-primary" %>
 
 <% end %>
-
-<br><br><br>
