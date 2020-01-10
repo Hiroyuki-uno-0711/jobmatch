@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   # メッセージ機能関連
   resources :rooms, only: [:create,:show]
-  resources :messages, only: [:create]
+  # resources :messages, only: [:create]
 
 
   root 'tops#top'
