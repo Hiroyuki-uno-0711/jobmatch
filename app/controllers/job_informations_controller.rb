@@ -1,18 +1,16 @@
 class JobInformationsController < ApplicationController
 
-  def index
+  def search
+    @job_informations = JobInformation.where("genre = ?", params[:genre]).where("income = ?", params[:income]).where("area = ?", params[:area])
   end
-
 
   def show
     @job_information = JobInformation.find(params[:id])
   end
 
-
   def new
     @job_information= JobInformation.new
   end
-
 
   def create
     @job_information= JobInformation.new(job_information_params)

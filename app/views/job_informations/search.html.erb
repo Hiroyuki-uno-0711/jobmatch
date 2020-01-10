@@ -1,0 +1,62 @@
+<h2 class="margin-bottom-35px">求人検索</h2>
+
+<div class="row margin-bottom-35px">
+  <%= form_tag(job_informations_search_path, method: "get") do %>
+    <div class="col-xs-3">
+      <h4>職種</h4>
+      <%= select_tag(:genre, options_for_select(JobInformation.genres.keys.to_a, {}), class:"form-control", :style=> "width:85%;") %>
+    </div>
+
+    <div class="col-xs-2">
+      <h4>年収</h4>
+      <%= select_tag(:income, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:70%;") %>
+    </div>
+    <div class="col-xs-4">
+      <h4>勤務地</h4>
+      <%= select_tag(:area, options_for_select(JobInformation.areas.keys.to_a, {}), class:"form-control", :style=> "width:60%;") %>
+    </div>
+    <div class="col-xs-3">
+      <div class="row margin-bottom-45px"></div>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= submit_tag "絞り込み", class: "btn btn-primary", :style=> "width:80%;" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>求人名</th>
+            <th>企業名</th>
+            <th>作成日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @job_informations.each do |job_information| %>
+            <tr>
+              <td>
+                <%= link_to job_information_path(job_information) do %>
+                  <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+                <% end %>
+              </td>
+              <td>
+                <%= job_information.title %>
+              </td>
+              <td>
+                <%= job_information.company %>
+              </td>
+              <td>
+                <%= job_information.created_at.strftime("%Y-%m-%d") %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+    </table>
+</div>

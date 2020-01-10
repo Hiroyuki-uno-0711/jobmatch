@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   root 'tops#top'
   get 'about' => 'tops#about'
+  get 'job_informations/search'  => 'job_informations#search'
 
   # 求人票関連
   resources :job_informations, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
