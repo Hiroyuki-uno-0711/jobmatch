@@ -1,10 +1,8 @@
-<h1>お知らせ</h1>
+<h1 class="margin-bottom-35px">お知らせ</h1>
 
 <!-- 自分の投稿に対するいいね、コメントは通知に表示しない -->
 <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 <% pp notifications %>
-
-<br>
 
 <% if notifications.exists? %>
     <table class="table table-striped">

@@ -1,16 +1,14 @@
 class JobInformationsController < ApplicationController
 
-  def search
-    @job_informations = JobInformation.where("genre = ?", params[:genre]).where("income = ?", params[:income]).where("area = ?", params[:area])
-  end
-
   def show
     @job_information = JobInformation.find(params[:id])
   end
 
+
   def new
     @job_information= JobInformation.new
   end
+
 
   def create
     @job_information= JobInformation.new(job_information_params)
@@ -43,6 +41,11 @@ class JobInformationsController < ApplicationController
     @job_information = JobInformation.find(params[:id])
     @job_information.destroy
     redirect_to user_path(current_user)
+  end
+
+
+  def search
+    @job_informations = JobInformation.where("genre = ?", params[:genre]).where("income = ?", params[:income]).where("area = ?", params[:area])
   end
 
 

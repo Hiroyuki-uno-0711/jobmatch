@@ -24,7 +24,6 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-
   end
 
 
@@ -47,7 +46,8 @@ class UsersController < ApplicationController
   end
 
 
-  def index
+  def search
+    @users = User.where("career = ?", params[:career]).where("income = ?", params[:income]).where("area = ?", params[:area])
   end
 
 

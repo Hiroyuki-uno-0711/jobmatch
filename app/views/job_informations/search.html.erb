@@ -1,20 +1,25 @@
 <h2 class="margin-bottom-35px">求人検索</h2>
 
 <div class="row margin-bottom-35px">
+
   <%= form_tag(job_informations_search_path, method: "get") do %>
+
     <div class="col-xs-3">
       <h4>職種</h4>
-      <%= select_tag(:genre, options_for_select(JobInformation.genres.keys.to_a, {}), class:"form-control", :style=> "width:85%;") %>
+      <%= select_tag(:genre, options_for_select(JobInformation.genres.to_a, {}), class:"form-control", :style=> "width:85%;") %>
+
     </div>
 
     <div class="col-xs-2">
       <h4>年収</h4>
       <%= select_tag(:income, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:70%;") %>
     </div>
+
     <div class="col-xs-4">
       <h4>勤務地</h4>
-      <%= select_tag(:area, options_for_select(JobInformation.areas.keys.to_a, {}), class:"form-control", :style=> "width:60%;") %>
+      <%= select_tag(:area, options_for_select(JobInformation.areas.to_a, {}), class:"form-control", :style=> "width:60%;") %>
     </div>
+
     <div class="col-xs-3">
       <div class="row margin-bottom-45px"></div>
       <div class="row">
@@ -23,7 +28,9 @@
         </div>
       </div>
     </div>
+
   <% end %>
+
 </div>
 
 

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
 
   # ユーザー関連
-  resources :users, only: [:index, :show, :edit, :destroy, :update] do
+  resources :users, only: [:show, :edit, :destroy, :update] do
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
@@ -19,15 +19,16 @@ Rails.application.routes.draw do
 
   # メッセージ機能関連
   resources :rooms, only: [:create,:show]
-  resources :messages, only: [:create]
+  # resources :messages, only: [:create]
 
 
   root 'tops#top'
   get 'about' => 'tops#about'
+  get 'users/search'  => 'users#search'
   get 'job_informations/search'  => 'job_informations#search'
 
   # 求人票関連
-  resources :job_informations, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+  resources :job_informations, only: [:new, :create, :show, :edit, :destroy, :update] do
     resource :favorites, only: [:create, :destroy]
   end
 
