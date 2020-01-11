@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  get 'users/search'  => 'users#search'
+  get 'job_informations/search'  => 'job_informations#search'
+
   # ユーザー関連
   resources :users, only: [:show, :edit, :destroy, :update] do
     resource :relationships, only: [:create, :destroy]
@@ -24,8 +27,6 @@ Rails.application.routes.draw do
 
   root 'tops#top'
   get 'about' => 'tops#about'
-  get 'users/search'  => 'users#search'
-  get 'job_informations/search'  => 'job_informations#search'
 
   # 求人票関連
   resources :job_informations, only: [:new, :create, :show, :edit, :destroy, :update] do
