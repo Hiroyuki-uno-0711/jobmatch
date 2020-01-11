@@ -43,7 +43,11 @@
 
         <tr>
           <th>担当キャリアアドバイザー</th>
-          <td><%= @job_information.user.last_name %> <%= @job_information.user.first_name %></td>
+          <td>
+            <%= link_to user_path(@job_information.user) do %>
+            <%= @job_information.user.last_name %> <%= @job_information.user.first_name %>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
