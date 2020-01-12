@@ -15,7 +15,7 @@
 
       <td>
         <%= link_to user do %>
-          <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+          <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
         <% end %>
       </td>
 

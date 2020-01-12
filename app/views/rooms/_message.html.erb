@@ -3,7 +3,7 @@
       <% messages.each do |m| %>
         <div class="chat-box">
           <div class="chat-face">
-            <%= attachment_image_tag m.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+            <%= attachment_image_tag m.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
           </div>
           <div class="chat-content margin-bottom-15px">
             <strong>

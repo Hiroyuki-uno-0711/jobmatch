@@ -15,4 +15,5 @@ class RoomChannel < ApplicationCable::Channel
     message.save
     ActionCable.server.broadcast 'room_channel', content: ApplicationController.renderer.render(partial: 'rooms/message', locals: {messages: [message]})
    end
+
 end

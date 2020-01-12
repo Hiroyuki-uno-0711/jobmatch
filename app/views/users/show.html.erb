@@ -12,7 +12,7 @@
 
 <div class="row margin-bottom-35px">
   <div class="col-xs-5">
-    <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "300x300", class: "margin-bottom" %>
+    <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "300x300", class: "margin-bottom img-border" %>
       </div>
 
       <div class="col-xs-7">
@@ -89,12 +89,12 @@
                     <%= link_to '求人を探す', job_informations_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
                   </td>
                   <td class="td-padding">
-                    <%= link_to 'CAを探す', users_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                    <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
                   </td>
                 </tr>
                 <tr>
                   <td class="td-padding">
-                    <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                    <%= link_to '転職診断をする', jobcheck_top_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
                   </td>
                   <td class="td-padding">
                     <%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
@@ -216,7 +216,7 @@
               <tr>
                 <td>
                   <%= link_to job_information_path(job_information) do %>
-                    <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+                    <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
                   <% end %>
                 </td>
                 <td>

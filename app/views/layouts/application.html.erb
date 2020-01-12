@@ -31,12 +31,17 @@
         <ul class="nav-box clearfix">
 
           <% if user_signed_in? %>
+
             <li class="navlist">
               <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
             </li>
 
             <li class="navlist">
               <%= link_to " お知らせ", notifications_path, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
+            </li>
+
+            <li class="navlist">
+              <%= link_to " マイページ", user_path(current_user), class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
             </li>
 
           <% else %>
