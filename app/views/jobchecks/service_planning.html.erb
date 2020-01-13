@@ -1,3 +1,39 @@
-<%= @service_planning.round(0) %>%
+<h1 class="margin-bottom-45px">転職診断結果</h1>
 
-<%= @memo %>
+<div class="margin-bottom-35px">
+  <center><%= image_tag('image/service_planning.png',class: "imagesize") %></center>
+</div>
+
+<div class="margin-bottom-25px">
+  <center>
+    <h4>
+      <%= current_user.last_name %><%= current_user.first_name %>さんが「商品／サービス企画」に転職できる可能性は
+    </h4>
+  </center>
+</div>
+
+<div>
+  <center>
+    <b class="font-size1"><%= @service_planning.round(0) %></b>
+    <b class="font-size2">%</b>
+  </center>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+      <div class="memo-box">
+        <span class="box-title">一口メモ</span>
+        <p><%= @memo %></p>
+      </div>
+    </div>
+    <div class="col-xs-3"></div>
+</div>
+
+
+<div>
+  <center>
+    <%= link_to '転職診断TOPにもどる', jobcheck_top_path, class: "btn btn-primary btn-lg", :style=> "width:30%;" %>
+  </center>
+</div>

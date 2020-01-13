@@ -9,14 +9,16 @@ class JobchecksController < ApplicationController
 
      case current_user.career
        when '有形営業'
-         career = 0.95
+         career = 0.9
        when '無形営業'
-         career = 0.8
+         career = 0.75
        when '商品企画'
-         career = 0.7
+         career = 0.63
        when '物流倉庫管理'
-         career = 0.6
-       when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
+         career = 0.65
+       when '一般事務'
+         career = 0.35
+       when '人事', '経理', '総務', 'システムエンジニア'
          career = 0.4
        when '販売サービス'
          career = 0.5
@@ -75,20 +77,22 @@ class JobchecksController < ApplicationController
 
     it_sales = 0
 
-    case current_user.career
-     when '有形営業'
-       career = 0.8
-     when '無形営業'
-       career = 0.9
-     when '商品サービス企画'
-       career = 0.7
-     when '物流倉庫管理'
-       career = 0.55
-     when '一般事務', '人事', '経理', '総務'
-       career = 0.5
-     when '販売サービス', 'システムエンジニア'
-       career = 0.6
-    end
+     case current_user.career
+       when '有形営業'
+         career = 0.75
+       when '無形営業'
+         career = 0.8
+       when '商品企画', '販売サービス'
+         career = 0.55
+       when '物流倉庫管理'
+         career = 0.5
+       when '一般事務'
+         career = 0.42
+       when '人事', '経理', '総務'
+         career = 0.45
+       when 'システムエンジニア'
+         career = 0.63
+     end
 
     case current_user.age
      when 20, 21, 22, 23, 24
@@ -140,16 +144,18 @@ class JobchecksController < ApplicationController
 
     real_estate_sales = 0
 
-    case current_user.career
-     when '有形営業', '無形営業'
-       career = 0.9
-     when '商品サービス企画', '物流倉庫管理'
-       career = 0.7
-     when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
-       career = 0.6
-     when '販売サービス'
-       career = 0.8
-    end
+     case current_user.career
+       when '有形営業'
+         career = 0.95
+       when '無形営業'
+         career = 0.93
+       when '商品企画', '物流倉庫管理'
+         career = 0.7
+       when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
+         career = 0.65
+       when '販売サービス'
+         career = 0.8
+     end
 
     case current_user.age
      when 20, 21, 22, 23, 24
@@ -190,20 +196,22 @@ class JobchecksController < ApplicationController
 
     mr_sales = 0
 
-    case current_user.career
-     when '有形営業'
-       career = 0.7
-     when '無形営業'
-       career = 0.6
-     when '商品サービス企画'
-       career = 0.5
-     when '物流倉庫管理'
-       career = 0.45
-     when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
-       career = 0.3
-     when '販売サービス'
-       career = 0.45
-    end
+     case current_user.career
+       when '有形営業'
+         career = 0.7
+       when '無形営業'
+         career = 0.55
+       when '商品企画'
+         career = 0.5
+       when '物流倉庫管理', '一般事務'
+         career = 0.25
+       when '人事', '経理', '総務'
+         career = 0.3
+       when 'システムエンジニア'
+         career = 0.28
+       when '販売サービス'
+         career = 0.45
+     end
 
     case current_user.age
      when 20, 21, 22, 23, 24
@@ -244,20 +252,26 @@ class JobchecksController < ApplicationController
 
     human_resources_sales = 0
 
-    case current_user.career
-     when '有形営業'
-       career = 0.9
-     when '無形営業'
-       career = 0.95
-     when '商品サービス企画', '販売サービス'
-       career = 0.7
-     when '物流倉庫管理'
-       career = 0.6
-     when '一般事務', '経理', '総務', 'システムエンジニア'
-       career = 0.55
-     when '人事'
-       career = 0.8
-    end
+     case current_user.career
+       when '有形営業'
+         career = 0.85
+       when '無形営業'
+         career = 0.9
+       when '商品企画'
+         career = 0.65
+       when '物流倉庫管理', '総務'
+         career = 0.58
+       when '一般事務'
+         career = 0.52
+       when '人事'
+         career = 0.7
+       when '経理'
+         career = 0.55
+       when 'システムエンジニア'
+         career = 0.48
+       when '販売サービス'
+         career = 0.65
+     end
 
     case current_user.age
      when 20, 21, 22, 23, 24
@@ -315,20 +329,22 @@ class JobchecksController < ApplicationController
 
     webad_sales = 0
 
-    case current_user.career
-     when '有形営業'
-       career = 0.9
-     when '無形営業'
-       career = 0.95
-     when '商品サービス企画'
-       career = 0.7
-     when '物流倉庫管理'
-       career = 0.55
-     when '一般事務', '経理', '総務', 'システムエンジニア', '人事'
-       career = 0.5
-     when '販売サービス'
-       career = 0.6
-    end
+     case current_user.career
+       when '有形営業'
+         career = 0.8
+       when '無形営業'
+         career = 0.85
+       when '商品企画'
+         career = 0.75
+       when '物流倉庫管理'
+         career = 0.55
+       when '一般事務'
+         career = 0.48
+       when '人事', '経理', '総務','システムエンジニア'
+         career = 0.5
+       when '販売サービス'
+         career = 0.58
+     end
 
     case current_user.age
      when 20, 21, 22, 23, 24
@@ -374,6 +390,114 @@ class JobchecksController < ApplicationController
 
     service_planning = 0
 
+     case current_user.career
+       when '有形営業', '無形営業'
+         career = 0.4
+       when '商品企画'
+         career = 0.8
+       when '物流倉庫管理', '一般事務'
+         career = 0.2
+       when '人事', '経理', '総務'
+         career = 0.25
+       when 'システムエンジニア'
+         career = 0.3
+       when '販売サービス'
+         career = 0.32
+     end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    service_planning = career * age * career_age * 100
+    @service_planning = service_planning
+
+
+    case current_user.career
+     when '有形営業', '無形営業', '物流倉庫管理', '一般事務', '経理', '総務', '人事', 'システムエンジニア', '販売サービス'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティング力が求められます。求められるスキルの専門性が高い上に、募集人員も1名枠の求人がほとんどであるため、極めて狭き門となります。ネット広告の市場が活発しているため、Web広告代理店やリサーチ会社などで経験を積んだ後、ステップアップとして転職するのは1つの手です。'
+
+     when '商品サービス企画'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティング力が求められます。これまで経験した業界や、取り扱っていた商品に親和性があれば、経験を買ってもらいやすい職種ですが、昨今ネット広告の市場が活発している影響から、事業会社の商品企画担当出身者よりも、Web広告の知見がある代理店出身者を採用する傾向も多くあります。'
+    end
+  end
+
+
+  def office_work
+
+    office_work = 0
+
+    case current_user.career
+     when '有形営業', '無形営業', '商品サービス企画'
+       career = 0.45
+     when '物流倉庫管理', '販売サービス'
+       career = 0.4
+     when '一般事務'
+       career = 0.7
+     when '人事', '総務'
+       career = 0.55
+     when '経理'
+       career = 0.63
+     when 'システムエンジニア'
+       career = 0.58
+     when '販売サービス'
+       career = 0.4
+    end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    office_work = career * age * career_age * 100
+    @office_work = office_work
+
+
+    case current_user.career
+     when '有形営業', '無形営業', '物流倉庫管理', '一般事務', '経理', '総務', '人事', 'システムエンジニア', '販売サービス'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティング力が求められます。求められるスキルの専門性が高い上に、募集人員も1名枠の求人がほとんどであるため、極めて狭き門となります。ネット広告の市場が活発しているため、Web広告代理店やリサーチ会社などで経験を積んだ後、ステップアップとして転職するのは1つの手です。'
+
+     when '商品サービス企画'
+      @memo = '商品企画担当は、ユーザーのニーズが多様化していることを背景に、きめ細かいマーケティング力が求められます。これまで経験した業界や、取り扱っていた商品に親和性があれば、経験を買ってもらいやすい職種ですが、昨今ネット広告の市場が活発している影響から、事業会社の商品企画担当出身者よりも、Web広告の知見がある代理店出身者を採用する傾向も多くあります。'
+    end
+  end
+
+
+  def accounting
+
+    accounting = 0
+
     case current_user.career
      when '有形営業', '無形営業'
        career = 0.4
@@ -405,8 +529,8 @@ class JobchecksController < ApplicationController
        career_age = 0.98
     end
 
-    service_planning = career * age * career_age * 100
-    @service_planning = service_planning
+    accounting = career * age * career_age * 100
+    @accounting = accounting
 
 
     case current_user.career
