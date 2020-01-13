@@ -4,6 +4,7 @@
 
   <table>
     <%= form_tag(job_informations_search_path, method: "get") do %>
+
       <tr>
         <td><h4>職種</h4></td>
         <td><h4>年収</h4></td>
@@ -14,24 +15,31 @@
       </tr>
 
       <tr>
+
         <td class="td-padding-2">
           <%= select_tag(:genre, options_for_select(JobInformation.genres.to_a, {}), class:"form-control", :style=> "width:100%;") %>
         </td>
+
         <td class="td-padding">
-          <%= select_tag(:income, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:100%;") %>
+          <%= select_tag(:income_from, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:100%;") %>
         </td>
+
         <td class="td-padding">
           <p>～</p>
         </td>
+
         <td class="td-padding-2">
-          <%= select_tag(:income, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:100%;") %>
+          <%= select_tag(:income_to, options_for_select([250,300,350,400,450,500,550,600,650,700], {},), class:"form-control", :style=> "width:100%;") %>
         </td>
+
         <td class="td-padding-2">
           <%= select_tag(:area, options_for_select(JobInformation.areas.to_a, {}), class:"form-control", :style=> "width:100%;") %>
         </td>
+
         <td class="td-padding">
           <%= submit_tag "絞り込み", class: "btn btn-primary", :style=> "width:100%;" %>
         </td>
+
       </tr>
     <% end %>
   </table>

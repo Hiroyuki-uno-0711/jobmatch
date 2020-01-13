@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
 
   def search
-    @users = User.where("career = ?", params[:career]).where("career_age = ?", params[:career_age]).where("age = ?", params[:age])
+    @users = User.where("career = ?", params[:career]).where("career_age >= ?", params[:career_age]).where(age: params[:age_from]..params[:age_to])
   end
 
 

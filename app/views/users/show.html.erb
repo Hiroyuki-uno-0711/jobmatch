@@ -86,7 +86,7 @@
               <table>
                 <tr>
                   <td class="td-padding">
-                    <%= link_to '求人を探す', job_informations_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                    <%= link_to '求人を探す', job_informations_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;", data: {"turbolinks" => false} %>
                   </td>
                   <td class="td-padding">
                     <%= link_to 'お気に入り求人', favorites_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
@@ -124,7 +124,7 @@
                 </tr>
                 <tr>
                   <td class="td-padding">
-                    <%= link_to 'ユーザーを探す', users_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
+                    <%= link_to 'ユーザーを探す', users_search_path, class: "btn btn-primary btn-lg", :style=> "width:100%;", data: {"turbolinks" => false} %>
                   </td>
                   <td class="td-padding">
                     <%= link_to 'マイページ編集', edit_user_path(current_user), class: "btn btn-primary btn-lg", :style=> "width:100%;" %>
