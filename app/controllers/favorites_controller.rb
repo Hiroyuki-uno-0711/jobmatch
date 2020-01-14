@@ -5,7 +5,10 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(job_information_id: job_information.id)
     favorite.save
 
-    job_information.create_notification_like!(current_user)
+    notification = job_information.create_notification_like!(current_user)
+
+    inquiry = Inquiry.new(name: "運営部", message: "通知連絡", email: notification.visiter.email)
+    InquiryMailer.send_mail(inquiry).deliver_now
 
     redirect_to request.referrer
   end

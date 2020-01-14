@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @job_informations = @user.job_informations.all
 
+    # チャット関連のアクション
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
 
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+
   end
 
 
