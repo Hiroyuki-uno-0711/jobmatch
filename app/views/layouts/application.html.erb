@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -17,7 +18,7 @@
         <h2 class="title-box">
 
           <% if user_signed_in? %>
-           <%= link_to "Job Matching", user_path(current_user), class: "text-decoration",:style=>"color:white;" %>
+           <%= link_to "Job Matching", user_path(current_user), class: "text-decoration",:style=>"color:white;", data: {"turbolinks" => false} %>
 
           <% else %>
           <%= link_to "Job Matching", root_path, :style=>"color:white;", data: {"turbolinks" => false} %>
@@ -33,24 +34,28 @@
           <% if user_signed_in? %>
 
             <li class="navlist">
-              <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
+              <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt", :style=>"color:white;" %>
             </li>
 
             <li class="navlist">
-              <%= link_to " お知らせ", notifications_path, class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
+              <% if unchecked_notifications.any? %>
+                <%= link_to " お知らせ（新着あり）", notifications_path, class: "fas fa-bell", :style=>"color:orange;", data: {"turbolinks" => false} %>
+              <% else %>
+                <%= link_to " お知らせ", notifications_path, class: "fas fa-bell", :style=>"color:white;", data: {"turbolinks" => false} %>
+              <% end %>
             </li>
 
             <li class="navlist">
-              <%= link_to " マイページ", user_path(current_user), class: " glyphicon glyphicon-log-out logout", :style=>"color:white;" %>
+              <%= link_to " マイページ", user_path(current_user), class: "fas fa-user", :style=>"color:white;", data: {"turbolinks" => false} %>
             </li>
 
           <% else %>
             <li class="navlist">
-              <%= link_to ' ログイン', new_user_session_path, class: "glyphicon glyphicon-edit sign_up", :style=>"color:white;"%>
+              <%= link_to ' ログイン', new_user_session_path, class: "fas fa-sign-in-alt", :style=>"color:white;"%>
             </li>
 
             <li class="navlist">
-              <%= link_to ' 新規登録', new_user_registration_path, class: "glyphicon glyphicon-edit sign_up", :style=>"color:white;"%>
+              <%= link_to ' 新規登録', new_user_registration_path, class: "fas fa-user-plus", :style=>"color:white;"%>
             </li>
 
           <% end %>

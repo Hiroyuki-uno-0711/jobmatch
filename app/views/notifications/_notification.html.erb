@@ -21,4 +21,4 @@
 
     <% end %>
 
-    <%= time_ago_in_words(notification.created_at).upcase %>
+    <%= notification.created_at.strftime("%Y-%m-%d") %>
