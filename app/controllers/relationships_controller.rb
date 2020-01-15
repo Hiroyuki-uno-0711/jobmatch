@@ -6,6 +6,9 @@ class RelationshipsController < ApplicationController
 
     follow.create_notification_follow!(current_user)
 
+    inquiry = Inquiry.new(name: "運営部", message: "ユーザーよりフォローされました。マイページより詳細をご確認ください。", email: User.find(params[:user_id]).email)
+    InquiryMailer.send_mail(inquiry).deliver_now
+
     redirect_to request.referrer
   end
 

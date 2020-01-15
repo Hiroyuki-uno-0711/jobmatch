@@ -4,9 +4,8 @@ class InquiryMailer < ApplicationMailer
     @inquiry = inquiry
     mail(
       from: 'jobcheck.app@gmail.com',
-      to:   'do.for.me.affiliate@gmail.com',
-      # to:   @inquiry.email
-      subject: 'お問い合わせ通知'
+      to:   @inquiry.email,
+      subject: '通知連絡'
     )
   end
 
