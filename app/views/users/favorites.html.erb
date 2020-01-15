@@ -29,7 +29,7 @@
 
       <td>
         <% if current_user == @user %>
-          <p><%=link_to "興味を取り消す", job_information_favorites_path(job), method: :delete, class: "btn btn-danger", :style=> "width:100%;" %></p>
+          <p><%=link_to "興味を取り消す", job_information_favorites_path(job.job_information), method: :delete, class: "btn btn-danger", :style=> "width:100%;" %></p>
         <% end %>
       </td>
 

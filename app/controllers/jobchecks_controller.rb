@@ -1,4 +1,5 @@
 class JobchecksController < ApplicationController
+  before_action :career_advisor
 
   def top
   end
@@ -692,6 +693,49 @@ class JobchecksController < ApplicationController
   end
 
 
+  def system_engineer
+
+    system_engineer = 0
+
+    case current_user.career
+     when '有形営業', '無形営業', '商品サービス企画', '物流倉庫管理', '一般事務', '販売サービス', '経理', '人事', '総務'
+       career = 0.6
+     when "システムエンジニア"
+       career = 0.9
+    end
+
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
+
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
+
+    system_engineer = career * age * career_age * 100
+    @system_engineer = system_engineer
+
+
+    case current_user.career
+     when '有形営業', '無形営業', '物流倉庫管理', '一般事務', '商品サービス企画', '経理', '人事', '総務', '販売サービス'
+      @memo = 'Webエンジニアは、ITシステムの中でもWebの知識・スキルを持つエンジニアです。事業会社の商材や社内システムがWeb化している影響からサービスのニーズは高く、それに伴い多くの人材を確保する動きが企業間であるため、求人数は比較的多い職種です。ただ未経験での転職の場合、専門知識を問われる職種のため、ある程度のITリテラシーを備えておかなければ決してハードルは低くないです。また年齢層が若い傾向にある職種のため、20代を超えると未経験での入社は難しくなります。'
+
+     when 'システムエンジニア'
+      @memo = 'Webエンジニアは、ITシステムの中でもWebの知識・スキルを持つエンジニアです。事業会社の商材や社内システムがWeb化している影響からサービスのニーズは高く、それに伴い多くの人材を確保する動きが企業間であるため、求人数は比較的多い職種です。これまでのスキルがフルに活かせる環境であれば引く手あまたですが、事業会社の社内SEや、SEO対策やWebマーケティングの知見も持った人材を求める企業などはハードルがやや高めです。'
+    end
+  end
 
 
 
@@ -710,6 +754,14 @@ class JobchecksController < ApplicationController
 
 
 
+  private
+
+
+  def career_advisor
+    if current_user.user_status == 'キャリアアドバイザー'
+      redirect_to root_path
+    end
+  end
 
 
 

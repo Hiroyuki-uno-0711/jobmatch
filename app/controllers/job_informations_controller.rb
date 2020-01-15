@@ -1,5 +1,9 @@
 class JobInformationsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :jobhunter_user, only: [:new]
+
   def show
     @job_information = JobInformation.find(params[:id])
   end
@@ -54,6 +58,21 @@ class JobInformationsController < ApplicationController
 
   def job_information_params
     params.require(:job_information).permit(:genre, :area, :income, :company, :title, :summary, :detail, :job_image)
+  end
+
+  def correct_user
+      job_information = JobInformation.find(params[:id])
+      user = job_information.user
+
+      if current_user != user
+        redirect_to root_path
+      end
+  end
+
+  def jobhunter_user
+    if current_user.user_status == '一般ユーザー'
+      redirect_to root_path
+    end
   end
 
 end

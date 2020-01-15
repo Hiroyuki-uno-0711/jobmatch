@@ -6,6 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module Jobmatch
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -17,3 +18,5 @@ module Jobmatch
     # the framework and any gems in your application.
   end
 end
+
+# config.i18n.default_locale = :ja

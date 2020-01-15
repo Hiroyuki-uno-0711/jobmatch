@@ -1,3 +1,16 @@
+<% if @job_information.errors.any? %>
+  <p>入力項目に誤りございます。下記ご確認ください。</p>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @job_information.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2 class="margin-bottom-35px">新規求人追加</h2>
 
 <%= form_for(@job_information) do |f| %>

@@ -86,6 +86,8 @@
 
   <% end %>
 
-  <%= f.submit "登録情報を更新", class: "btn btn-primary" %>
+  <%= f.submit "登録情報を更新", class: "btn btn-primary margin-bottom-35px" %>
 
 <% end %>
+
+<%= link_to "アカウントを削除する", user_path(current_user), data: { confirm: "本当に退会しますか?" }, method: :delete, class: "btn btn-danger" %>

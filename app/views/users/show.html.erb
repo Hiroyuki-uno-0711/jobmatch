@@ -165,11 +165,15 @@
                 <% end %>
               </td>
             </tr>
-            <tr>
-              <td class="td-padding">
-                <%= link_to 'お気に入り求人', favorites_user_path(@user), class: "btn btn-primary btn-lg", :style=> "width:160px;" %>
-              </td>
-            </tr>
+
+            <% if @user.user_status == '一般ユーザー' %>
+              <tr>
+                <td class="td-padding">
+                  <%= link_to 'お気に入り求人', favorites_user_path(@user), class: "btn btn-primary btn-lg", :style=> "width:160px;" %>
+                </td>
+              </tr>
+            <% end %>
+
           </table>
           <% end %>
 
