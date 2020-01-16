@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     @job_informations = @user.job_informations.all
 
-    # チャット機能関連
+    # チャット関連のアクション
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
 
