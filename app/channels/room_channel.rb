@@ -14,6 +14,6 @@ class RoomChannel < ApplicationCable::Channel
     message = Message.new(content: message['content'][0], user_id: message['content'][1].to_i, room_id: message['content'][2].to_i)
     message.save
     ActionCable.server.broadcast 'room_channel', content: ApplicationController.renderer.render(partial: 'rooms/message', locals: {messages: [message]})
-   end
+  end
 
 end

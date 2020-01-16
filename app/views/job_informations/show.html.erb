@@ -52,19 +52,9 @@
       </tbody>
     </table>
 
-    <% if current_user.user_status == '一般ユーザー' %>
-
-      <% if @job_information.favorited_by?(current_user) %>
-
-        <%= link_to "興味を取り消す", job_information_favorites_path(@job_information), method: :delete, class: "btn btn-danger btn-lg", :style=> "width:30%;" %>
-
-      <% else %>
-
-        <%= link_to "興味がある", job_information_favorites_path(@job_information), method: :post, class: "btn btn-primary btn-lg", :style=> "width:30%;" %>
-
-      <% end %>
-
-    <% end %>
+    <div id="favorite_btn">
+      <%= render 'favorite_form', job_information: @job_information %>
+    </div>
 
   </div>
 </div>
