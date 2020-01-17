@@ -1,5 +1,6 @@
 <div class="row margin-bottom-35px">
   <h1 class="margin-bottom-35px">チャットルーム</h1>
+
   <% @entries.each do |e| %>
     <div class="col-xs-3">
       <%= link_to e.user do %>
@@ -8,14 +9,19 @@
       <%= e.user.last_name %> <%= e.user.first_name %>さん
     </div>
   <% end %>
+
   <div class="col-xs-6"></div>
 </div>
 
+
 <div class="row margin-bottom-15px">
+
   <div class="margin-bottom-35px">
     <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
   </div>
-    <%= render 'rooms/message', messages: @messages %>
-    <div id="messages"></div>
+
+  <%= render 'rooms/message', messages: @messages %>
+
+  <div id="messages"></div>
 
 </div>

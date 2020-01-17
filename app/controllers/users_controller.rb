@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @job_informations = @user.job_informations.all
+    @job_informations = @user.job_informations.all.page(params[:page]).per(10)
 
     # チャット関連のアクション
     @currentUserEntry = Entry.where(user_id: current_user.id)
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
 
   def search
-    @users = User.where("career = ?", params[:career]).where("career_age >= ?", params[:career_age]).where(age: params[:age_from]..params[:age_to])
+    @users = User.where("career = ?", params[:career]).where("career_age >= ?", params[:career_age]).where(age: params[:age_from]..params[:age_to]).page(params[:page]).per(10)
   end
 
 
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 
   def follows
     @user = User.find(params[:id])
-    @users = @user.followings
+    @users = @user.followings.page(params[:page]).per(20)
     # 他ユーザーのフォローは閲覧できないように設定
     if current_user != @user
       redirect_to root_path
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
 
   def followers
     @user = User.find(params[:id])
-    @users = @user.followers
+    @users = @user.followers.page(params[:page]).per(20)
     # 他ユーザーのフォロワーーは閲覧できないように設定
     if current_user != @user
       redirect_to root_path
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    @job_informations = @user.favorites
+    @job_informations = @user.favorites.page(params[:page]).per(15)
   end
 
 

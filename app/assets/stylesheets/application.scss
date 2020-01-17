@@ -115,6 +115,42 @@ header {
   padding :0 80px 15px 0;
 }
 
+.td-padding-3 {
+  padding :0 30px 0 0;
+}
+
+.td-padding-4 {
+  padding :0 20px 40px 0;
+}
+
+.hukidashi {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 5px;
+}
+
+.hukidashi:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
+}
+
+.hukidashi p {
+  margin: 0;
+  padding: 0;
+}
+
 .imagesize {
   width: 200px;
   height:170px;
@@ -219,4 +255,33 @@ header {
 .flash {
   font-weight: bold;
   font-color: red;
+}
+
+#container{
+  height: 400px;
+  margin-bottom: 50px;
+}
+
+.image1 {
+  background-image: url(hands.jpg);
+}
+
+.image2 {
+  background-image: url(pc.jpg);
+}
+
+.image3 {
+  background-image: url(building.jpg);
+}
+
+.about-box {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+
+.about-box p {
+  margin: 0;
+  padding: 0;
 }

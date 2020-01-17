@@ -38,6 +38,10 @@
             </li>
 
             <li class="navlist">
+              <%= link_to " About", about_path, class: "fas fa-file", :style=>"color:white;", data: {"turbolinks" => false} %>
+            </li>
+
+            <li class="navlist">
               <% if unchecked_notifications.any? %>
                 <%= link_to " お知らせ（新着あり）", notifications_path, class: "fas fa-bell", :style=>"color:orange;", data: {"turbolinks" => false} %>
               <% else %>
@@ -50,6 +54,11 @@
             </li>
 
           <% else %>
+
+            <li class="navlist">
+              <%= link_to " About", about_path, class: "fas fa-file", :style=>"color:white;", data: {"turbolinks" => false} %>
+            </li>
+
             <li class="navlist">
               <%= link_to ' ログイン', new_user_session_path, class: "fas fa-sign-in-alt", :style=>"color:white;"%>
             </li>

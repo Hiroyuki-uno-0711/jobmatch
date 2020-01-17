@@ -49,7 +49,7 @@ class JobInformationsController < ApplicationController
 
 
   def search
-    @job_informations = JobInformation.where("genre = ?", params[:genre]).where(income: params[:income_from]..params[:income_to]).where("area = ?", params[:area])
+    @job_informations = JobInformation.where("genre = ?", params[:genre]).where(income: params[:income_from]..params[:income_to]).where("area = ?", params[:area]).page(params[:page]).per(10)
   end
 
 
