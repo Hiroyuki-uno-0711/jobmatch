@@ -1,4 +1,5 @@
 class JobchecksController < ApplicationController
+  before_action :authenticate_user!
   before_action :career_advisor
   before_action :jobhunter_user
 
