@@ -11,7 +11,7 @@
 
     <% when 'like' %>
       <%= "さんが" %>
-      <%= link_to 'あなたの求人', notification.job_information, style: "font-weight: bold;" %>
+      <%= link_to notification.job_information.title, notification.job_information, style: "font-weight: bold;" %>
       <%= "に興味を持ちました" %>
 
     <% when notification.action
