@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'users/search'  => 'users#search'
   get 'job_informations/search'  => 'job_informations#search'
 
+
+
   # ユーザー関連
   resources :users, only: [:show, :edit, :destroy, :update] do
     resource :relationships, only: [:create, :destroy]
@@ -18,20 +20,32 @@ Rails.application.routes.draw do
     get :form, on: :member
     get :favorites, on: :member
   end
+
+
+
+  # 通知機能関連
   resources :notifications, only: :index
+
+
 
   # メッセージ機能関連
   resources :rooms, only: [:create,:show]
   # resources :messages, only: [:create]
 
 
+
+  # トップページ関連
   root 'tops#top'
   get 'about' => 'tops#about'
+
+
 
   # 求人票関連
   resources :job_informations, only: [:new, :create, :show, :edit, :destroy, :update] do
     resource :favorites, only: [:create, :destroy]
   end
+
+
 
   # 職種診断用のページ
   get 'jobcheck/top' => 'jobchecks#top'
