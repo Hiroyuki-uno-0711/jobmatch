@@ -790,17 +790,43 @@ class JobchecksController < ApplicationController
   end
 
 
+  def writer
 
+    writer = 0
 
+    case current_user.career
+     when '有形営業', '無形営業', "システムエンジニア", '物流倉庫管理', '一般事務', '経理', '人事', '総務', '販売サービス'
+       career = 0.15
+     when '商品サービス企画'
+       career = 0.2
+    end
 
+    case current_user.age
+     when 20, 21, 22, 23, 24
+       age = 0.9
+     when 25, 26, 27
+       age = 0.95
+     when 28, 29
+       age = 0.9
+    end
 
+    case current_user.career_age
+     when 1
+       career_age = 0.85
+     when 2
+       career_age = 0.9
+     when 3, 4, 5
+       career_age = 0.95
+     when 6, 7, 8, 9, 10
+       career_age = 0.98
+    end
 
+    writer = career * age * career_age * 100
+    @writer = writer
 
+    @memo = '主に雑誌やWebの記事や広告などのコンテンツの、キャッチコピー、ボディコピー、本文などを担当する仕事です。読者やユーザーの潜在的なニーズをとらえ、興味関心をそそるような記事・コンテンツを作ります。近年これらの仕事は、企業で雇うよりも安価な外注化が進み、求人が減少している傾向にあります。本気で目指すのであれば、正社員での求人は稀ですので、フリーランスとして外注サイトに登録して腕を磨いていくことが最善の選択肢となるでしょう。'
 
-
-
-
-
+  end
 
 
 
