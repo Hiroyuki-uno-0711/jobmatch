@@ -262,16 +262,17 @@ header {
   margin-bottom: 50px;
 }
 
-.image1 {
-  background-image: url(hands.jpg);
+.hands {
+  background-image: image-url("hands.png");
+  width: 100%;
 }
 
-.image2 {
-  background-image: url(pc.jpg);
+.pc {
+  background-image: image-url("pc.png");
 }
 
-.image3 {
-  background-image: url(building.jpg);
+.building {
+  background-image: image-url("building.png");
 }
 
 .about-box {
