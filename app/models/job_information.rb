@@ -12,6 +12,7 @@ class JobInformation < ApplicationRecord
 
 
   # バリデーション
+  validates :company, presence: true
   validates :title, presence: true, length: { minimum: 5, maximum: 50 }
   validates :summary, presence: true, length: { minimum: 10, maximum: 300 }
   validates :detail, presence: true, length: { minimum: 50, maximum: 1000 }

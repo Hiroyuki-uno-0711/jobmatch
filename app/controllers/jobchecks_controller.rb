@@ -625,13 +625,4 @@ class JobchecksController < ApplicationController
     end
   end
 
-  def jobhunter_user
-    if current_user.age.blank? or current_user.career.blank? or current_user.career_age.blank?
-      flash[:error] = "※転職診断を行う際は、登録情報の「年齢」、「経験職種」、「経験年数」をすべて埋めてください"
-      redirect_to user_path(current_user)
-    end
-  end
-
-
-
 end
