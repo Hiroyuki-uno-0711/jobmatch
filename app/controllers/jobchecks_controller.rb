@@ -8,71 +8,55 @@ class JobchecksController < ApplicationController
 
   def manufacturer_sales
 
-     manufacturer_sales = 0
+    manufacturer_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.9
-       when '無形営業'
-         career = 0.75
-       when '商品サービス企画'
-         career = 0.63
-       when '物流倉庫管理'
-         career = 0.65
-       when '一般事務'
-         career = 0.35
-       when '人事', '経理', '総務', 'システムエンジニア'
-         career = 0.4
-       when '販売サービス'
-         career = 0.5
-     end
+    case current_user.career
+     when '有形営業'
+       career = 0.9
+     when '無形営業'
+       career = 0.75
+     when '商品サービス企画'
+       career = 0.63
+     when '物流倉庫管理'
+       career = 0.65
+     when '一般事務'
+       career = 0.35
+     when '人事', '経理', '総務', 'システムエンジニア'
+       career = 0.4
+     when '販売サービス'
+       career = 0.5
+    end
 
-     case current_user.age
-       when 20, 21, 22, 23, 24
-      	 age = 0.9
-       when 25, 26, 27
-         age = 0.95
-       when 28, 29
-         age = 0.9
-     end
+    age = calc_age(current_user.age)
 
-     case current_user.career_age
-       when 1
-         career_age = 0.85
-       when 2
-         career_age = 0.9
-       when 3, 4, 5
-         career_age = 0.95
-       when 6, 7, 8, 9, 10
-         career_age = 0.98
-     end
+    career_age = calc_career_age(current_user.career_age)
 
-     manufacturer_sales = career * age * career_age * 100
-     @manufacturer_sales = manufacturer_sales
+    manufacturer_sales = career * age * career_age * 100
+    @manufacturer_sales = manufacturer_sales
 
 
-     case current_user.career
-       when '有形営業'
-        @memo = '志望する業界によって就職難易度は変わりますが、これまで有形物を扱っていた点においては、比較的経験の親和性はあり、転職成功率は高いと思われます。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。あまり選り好みすると転職が長引く可能性があるため注意が必要です。'
+    case current_user.career
+     when '有形営業'
+      @memo = '志望する業界によって就職難易度は変わりますが、これまで有形物を扱っていた点においては、比較的経験の親和性はあり、転職成功率は高いと思われます。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。あまり選り好みすると転職が長引く可能性があるため注意が必要です。'
 
-       when '無形営業'
-        @memo = '経験業界は異なりますが、これまでの顧客折衝経験を活かし、比較的転職はしやすい可能性が高いです。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。あまり選り好みすると転職が長引く可能性があるため注意が必要です。'
+     when '無形営業'
+      @memo = '経験業界は異なりますが、これまでの顧客折衝経験を活かし、比較的転職はしやすい可能性が高いです。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。あまり選り好みすると転職が長引く可能性があるため注意が必要です。'
 
-       when '商品サービス企画'
-        @memo = 'これまで企画していた商品やサービスのジャンルが、志望する業界に親和性があれば、営業職への転職も可能性は広がります。ただ顧客折衝経験が弱いく完全未経験としてみられるため、ハードルはやや高いです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
+     when '商品サービス企画'
+      @memo = 'これまで企画していた商品やサービスのジャンルが、志望する業界に親和性があれば、営業職への転職も可能性は広がります。ただ顧客折衝経験が弱いく完全未経験としてみられるため、ハードルはやや高いです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
 
-       when '物流倉庫管理'
-        @memo = '顧客折衝経験が全くない場合は完全未経験としてみられるためハードルは高いですが、物流業務だけでなく取引先との折衝経験があれば、加点要素となります。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
+     when '物流倉庫管理'
+      @memo = '顧客折衝経験が全くない場合は完全未経験としてみられるためハードルは高いですが、物流業務だけでなく取引先との折衝経験があれば、加点要素となります。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
 
-       when '一般事務', '経理', '総務', 'システムエンジニア'
-        @memo = '28歳までであれば、コミュニケーション力や人当りでカバーできる可能性はありますが、顧客折衝経験が全くない場合は完全未経験としてみられるため、ハードルは高いです。出身業界に親和性があれば、知識面で加点ポイントにはなります。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
+     when '一般事務', '経理', '総務', 'システムエンジニア'
+      @memo = '28歳までであれば、コミュニケーション力や人当りでカバーできる可能性はありますが、顧客折衝経験が全くない場合は完全未経験としてみられるため、ハードルは高いです。出身業界に親和性があれば、知識面で加点ポイントにはなります。ただ大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
 
-       when '人事'
-        @memo = '採用業務などで数字を追っていた経験があれば、営業でも活かせると判断され、転職の可能性は広がります。とはいえ、顧客折衝経験が全くない場合は完全未経験としてみられるため、ハードルは高いです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
+     when '人事'
+      @memo = '採用業務などで数字を追っていた経験があれば、営業でも活かせると判断され、転職の可能性は広がります。とはいえ、顧客折衝経験が全くない場合は完全未経験としてみられるため、ハードルは高いです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
 
-       when '販売サービス'
-        @memo = '顧客折衝経験を活かし、転職できる可能性はあります。ただこれまでの経験が個人客への折衝が主なため、法人折衝経験を強く求められる企業への転職は難しいです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
-     end
+     when '販売サービス'
+      @memo = '顧客折衝経験を活かし、転職できる可能性はあります。ただこれまでの経験が個人客への折衝が主なため、法人折衝経験を強く求められる企業への転職は難しいです。また大手のメーカー・商社は、新卒採用で人員を確保している企業がほとんどであるため、そもそも求人の母数が少ない傾向にあります。'
+    end
   end
 
 
@@ -80,42 +64,26 @@ class JobchecksController < ApplicationController
 
     it_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.75
-       when '無形営業'
-         career = 0.8
-       when '商品サービス企画', '販売サービス'
-         career = 0.55
-       when '物流倉庫管理'
-         career = 0.5
-       when '一般事務'
-         career = 0.42
-       when '人事', '経理', '総務'
-         career = 0.45
-       when 'システムエンジニア'
-         career = 0.63
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業'
+       career = 0.75
+     when '無形営業'
+       career = 0.8
+     when '商品サービス企画', '販売サービス'
+       career = 0.55
+     when '物流倉庫管理'
+       career = 0.5
+     when '一般事務'
+       career = 0.42
+     when '人事', '経理', '総務'
+       career = 0.45
+     when 'システムエンジニア'
+       career = 0.63
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     it_sales = career * age * career_age * 100
     @it_sales = it_sales
@@ -147,38 +115,22 @@ class JobchecksController < ApplicationController
 
     real_estate_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.95
-       when '無形営業'
-         career = 0.93
-       when '商品サービス企画', '物流倉庫管理'
-         career = 0.7
-       when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
-         career = 0.65
-       when '販売サービス'
-         career = 0.8
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業'
+       career = 0.95
+     when '無形営業'
+       career = 0.93
+     when '商品サービス企画', '物流倉庫管理'
+       career = 0.7
+     when '一般事務', '人事', '経理', '総務', 'システムエンジニア'
+       career = 0.65
+     when '販売サービス'
+       career = 0.8
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     real_estate_sales = career * age * career_age * 100
     @real_estate_sales = real_estate_sales
@@ -199,42 +151,26 @@ class JobchecksController < ApplicationController
 
     mr_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.7
-       when '無形営業'
-         career = 0.55
-       when '商品サービス企画'
-         career = 0.5
-       when '物流倉庫管理', '一般事務'
-         career = 0.25
-       when '人事', '経理', '総務'
-         career = 0.3
-       when 'システムエンジニア'
-         career = 0.28
-       when '販売サービス'
-         career = 0.45
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業'
+       career = 0.7
+     when '無形営業'
+       career = 0.55
+     when '商品サービス企画'
+       career = 0.5
+     when '物流倉庫管理', '一般事務'
+       career = 0.25
+     when '人事', '経理', '総務'
+       career = 0.3
+     when 'システムエンジニア'
+       career = 0.28
+     when '販売サービス'
+       career = 0.45
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     mr_sales = career * age * career_age * 100
     @mr_sales = mr_sales
@@ -255,46 +191,30 @@ class JobchecksController < ApplicationController
 
     human_resources_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.85
-       when '無形営業'
-         career = 0.9
-       when '商品サービス企画'
-         career = 0.65
-       when '物流倉庫管理', '総務'
-         career = 0.58
-       when '一般事務'
-         career = 0.52
-       when '人事'
-         career = 0.7
-       when '経理'
-         career = 0.55
-       when 'システムエンジニア'
-         career = 0.48
-       when '販売サービス'
-         career = 0.65
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業'
+       career = 0.85
+     when '無形営業'
+       career = 0.9
+     when '商品サービス企画'
+       career = 0.65
+     when '物流倉庫管理', '総務'
+       career = 0.58
+     when '一般事務'
+       career = 0.52
+     when '人事'
+       career = 0.7
+     when '経理'
+       career = 0.55
+     when 'システムエンジニア'
+       career = 0.48
+     when '販売サービス'
+       career = 0.65
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     human_resources_sales = career * age * career_age * 100
     @human_resources_sales = human_resources_sales
@@ -332,42 +252,26 @@ class JobchecksController < ApplicationController
 
     webad_sales = 0
 
-     case current_user.career
-       when '有形営業'
-         career = 0.8
-       when '無形営業'
-         career = 0.85
-       when '商品サービス企画'
-         career = 0.75
-       when '物流倉庫管理'
-         career = 0.55
-       when '一般事務'
-         career = 0.48
-       when '人事', '経理', '総務','システムエンジニア'
-         career = 0.5
-       when '販売サービス'
-         career = 0.58
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業'
+       career = 0.8
+     when '無形営業'
+       career = 0.85
+     when '商品サービス企画'
+       career = 0.75
+     when '物流倉庫管理'
+       career = 0.55
+     when '一般事務'
+       career = 0.48
+     when '人事', '経理', '総務','システムエンジニア'
+       career = 0.5
+     when '販売サービス'
+       career = 0.58
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     webad_sales = career * age * career_age * 100
     @webad_sales = webad_sales
@@ -393,40 +297,24 @@ class JobchecksController < ApplicationController
 
     service_planning = 0
 
-     case current_user.career
-       when '有形営業', '無形営業'
-         career = 0.4
-       when '商品サービス企画'
-         career = 0.8
-       when '物流倉庫管理', '一般事務'
-         career = 0.2
-       when '人事', '経理', '総務'
-         career = 0.25
-       when 'システムエンジニア'
-         career = 0.3
-       when '販売サービス'
-         career = 0.32
-     end
-
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
+    case current_user.career
+     when '有形営業', '無形営業'
+       career = 0.4
+     when '商品サービス企画'
+       career = 0.8
+     when '物流倉庫管理', '一般事務'
+       career = 0.2
+     when '人事', '経理', '総務'
+       career = 0.25
+     when 'システムエンジニア'
+       career = 0.3
+     when '販売サービス'
+       career = 0.32
     end
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    age = calc_age(current_user.age)
+
+    career_age = calc_career_age(current_user.career_age)
 
     service_planning = career * age * career_age * 100
     @service_planning = service_planning
@@ -463,25 +351,9 @@ class JobchecksController < ApplicationController
        career = 0.4
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     office_work = career * age * career_age * 100
     @office_work = office_work
@@ -514,25 +386,9 @@ class JobchecksController < ApplicationController
        career = 0.4
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     secretary = career * age * career_age * 100
     @secretary = secretary
@@ -559,25 +415,9 @@ class JobchecksController < ApplicationController
        career = 0.37
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     human_resources = career * age * career_age * 100
     @human_resources = human_resources
@@ -612,25 +452,9 @@ class JobchecksController < ApplicationController
        career = 0.8
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     accounting = career * age * career_age * 100
     @accounting = accounting
@@ -661,25 +485,9 @@ class JobchecksController < ApplicationController
        career = 0.8
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     general_affairs = career * age * career_age * 100
     @general_affairs = general_affairs
@@ -706,25 +514,9 @@ class JobchecksController < ApplicationController
        career = 0.9
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     system_engineer = career * age * career_age * 100
     @system_engineer = system_engineer
@@ -753,25 +545,9 @@ class JobchecksController < ApplicationController
        career = 0.95
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     sales_staff = career * age * career_age * 100
     @sales_staff = sales_staff
@@ -801,25 +577,9 @@ class JobchecksController < ApplicationController
        career = 0.2
     end
 
-    case current_user.age
-     when 20, 21, 22, 23, 24
-       age = 0.9
-     when 25, 26, 27
-       age = 0.95
-     when 28, 29
-       age = 0.9
-    end
+    age = calc_age(current_user.age)
 
-    case current_user.career_age
-     when 1
-       career_age = 0.85
-     when 2
-       career_age = 0.9
-     when 3, 4, 5
-       career_age = 0.95
-     when 6, 7, 8, 9, 10
-       career_age = 0.98
-    end
+    career_age = calc_career_age(current_user.career_age)
 
     writer = career * age * career_age * 100
     @writer = writer
@@ -830,8 +590,33 @@ class JobchecksController < ApplicationController
 
 
 
-
   private
+
+
+  def calc_age(age)
+    case age
+     when 20, 21, 22, 23, 24
+      0.9
+     when 25, 26, 27
+      0.95
+     when 28, 29
+      0.9
+    end
+  end
+
+
+  def calc_career_age(career_age)
+    case career_age
+     when 1
+      0.85
+     when 2
+      0.9
+     when 3, 4, 5
+      0.95
+     when 6, 7, 8, 9, 10
+      0.98
+    end
+  end
 
 
   def career_advisor

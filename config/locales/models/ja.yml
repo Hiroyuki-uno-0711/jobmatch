@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      job_information: 求人票
+    attributes:
+      job_information:
+        title: 求人タイトル
+
+
+    models:
+      user: ユーザー情報
+    attributes:
+      user:
+        last_name: 苗字
