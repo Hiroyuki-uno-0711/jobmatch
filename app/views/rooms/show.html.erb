@@ -17,7 +17,7 @@
 <div class="row margin-bottom-15px">
 
   <div class="margin-bottom-35px">
-    <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
+    <input type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>" class="form-control" style="width:250px;" placeholder="メッセージを入力してください">
   </div>
 
   <%= render 'rooms/message', messages: @messages %>

@@ -1,0 +1,46 @@
+<% if @task.errors.any? %>
+  <p>入力項目に誤りございます。下記ご確認ください。</p>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h2 class="margin-bottom-35px">タスク編集</h2>
+
+<div class="row margin-bottom-50px">
+
+  <table>
+    <%= form_for(@task) do |f| %>
+
+      <tr>
+        <td><h4><%= f.label :タスク内容 %></h4></td>
+        <td><h4><%= f.label :完了日 %></h4></td>
+        <td></td>
+      </tr>
+
+      <tr>
+
+        <td class="td-padding-2">
+          <%= f.text_field :task_content, autofocus: true, class:"form-control", :style=> "width:520px;" %>
+        </td>
+
+        <td class="td-padding-2">
+          <%= f.text_field :complete_date, autofocus: true, :id => 'datepicker', class:"form-control", :style=> "width:100px;" %>
+        </td>
+
+        <td class="td-padding">
+          <%= f.submit "タスク更新", class: "btn btn-primary", data: {"turbolinks" => false} %>
+        </td>
+
+      </tr>
+
+    <% end %>
+  </table>
+
+</div>

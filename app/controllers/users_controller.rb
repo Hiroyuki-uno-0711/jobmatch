@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   # 一般ユーザは、他の一般ユーザーの情報を閲覧できないように設定
   before_action :jobhunter_user, only: [:show, :favorites]
 
-  # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
-  before_action :jobhunter_user_blank, only: [:show, :edit, :search, :follows, :followers, :favorites]
+  # # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
+  # before_action :jobhunter_user_blank, only: [:show, :edit, :search, :follows, :followers, :favorites]
 
 
   def show
@@ -98,12 +98,14 @@ class UsersController < ApplicationController
   end
 
 
-  def jobhunter_user_blank
-    if current_user.age.blank? or current_user.career.blank? or current_user.career_age.blank?
-      flash[:error] = "※登録情報の「年齢」、「経験職種」、「経験年数」をすべて埋めてください"
-      redirect_to form_user_path(current_user)
-    end
-  end
+  # def jobhunter_user_blank
+  #   user = current_user
+  #   user.user_status == '一般ユーザー'
+  #   if user.age.blank? or user.career.blank? or user.career_age.blank?
+  #     flash[:error] = "※登録情報の「年齢」、「経験職種」、「経験年数」をすべて埋めてください"
+  #     redirect_to form_user_path(user)
+  #   end
+  # end
 
 
 

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'tasks/index'
+  get 'tasks/edit'
   # デバイス関連
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -44,6 +46,10 @@ Rails.application.routes.draw do
   resources :job_informations, only: [:new, :create, :show, :edit, :destroy, :update] do
     resource :favorites, only: [:create, :destroy]
   end
+
+
+  # タスク機能関連
+  resources :tasks, only: [:new, :index, :create, :edit, :destroy, :update]
 
 
 

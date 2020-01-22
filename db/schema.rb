@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_060447) do
+ActiveRecord::Schema.define(version: 2020_01_22_045907) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_01_18_060447) do
     t.datetime "updated_at", null: false
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+    t.index [nil], name: "index_notifications_on_book_id"
+    t.index [nil], name: "index_notifications_on_comment_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -99,6 +101,14 @@ ActiveRecord::Schema.define(version: 2020_01_18_060447) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "complete_date"
+    t.string "task_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
