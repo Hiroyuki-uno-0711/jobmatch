@@ -1,2 +1,63 @@
-<h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+<h2 class="margin-bottom-35px">タスク管理一覧</h2>
+
+<div class="row margin-bottom-50px">
+
+  <table>
+    <%= form_for(@task) do |f| %>
+
+      <tr>
+        <td><h4><%= f.label :完了日 %></h4></td>
+        <td><h4><%= f.label :タスク内容 %></h4></td>
+        <td></td>
+      </tr>
+
+      <tr>
+          <td class="td-padding-2">
+            <%= f.text_field :complete_date, autofocus: true, class:"form-control", :style=> "width:150px;" %>
+          </td>
+
+          <td class="td-padding-2">
+            <%= f.text_field :task_content, autofocus: true, class:"form-control", :style=> "width:520px;" %>
+          </td>
+          <td class="td-padding">
+            <%= f.submit "タスク追加", class: "btn btn-primary" %>
+          </td>
+      </tr>
+
+    <% end %>
+  </table>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>完了日</th>
+            <th>タスク</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+            <tr>
+              <td>
+                <%= task.complete_date %>
+              </td>
+              <td class="td-width">
+                <%= task.task_content %>
+              </td>
+              <td>
+                <%= link_to "完了", task_path(task), method: :delete, class: "btn btn-danger" %>
+              </td>
+              <td>
+                <%= link_to "編集", edit_task_path(task), class: "btn btn-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      <%= paginate @tasks %>
+    </table>
+</div>

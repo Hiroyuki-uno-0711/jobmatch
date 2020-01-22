@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
 
   # タスク管理機能関連
-  has_many :task, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 
   # フォロー機能関連
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
