@@ -1,3 +1,16 @@
+<% if @task.errors.any? %>
+  <p>入力項目に誤りございます。下記ご確認ください。</p>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2 class="margin-bottom-35px">タスク管理一覧</h2>
 
 <div class="row margin-bottom-50px">
@@ -6,18 +19,18 @@
     <%= form_for(@task) do |f| %>
 
       <tr>
-        <td><h4><%= f.label :完了日 %></h4></td>
         <td><h4><%= f.label :タスク内容 %></h4></td>
+        <td><h4><%= f.label :完了日 %></h4></td>
         <td></td>
       </tr>
 
       <tr>
           <td class="td-padding-2">
-            <%= f.text_field :complete_date, autofocus: true, class:"form-control", :style=> "width:150px;" %>
+            <%= f.text_field :task_content, autofocus: true, class:"form-control", :style=> "width:520px;" %>
           </td>
 
           <td class="td-padding-2">
-            <%= f.text_field :task_content, autofocus: true, class:"form-control", :style=> "width:520px;" %>
+            <%= f.text_field :complete_date, autofocus: true, :id => 'datepicker', class:"form-control", :style=> "width:100px;" %>
           </td>
           <td class="td-padding">
             <%= f.submit "タスク追加", class: "btn btn-primary" %>
@@ -44,16 +57,16 @@
           <% @tasks.each do |task| %>
             <tr>
               <td>
-                <%= task.complete_date %>
+                <%= task.complete_date.strftime("%Y-%m-%d") %>
               </td>
               <td class="td-width">
                 <%= task.task_content %>
               </td>
               <td>
-                <%= link_to "完了", task_path(task), method: :delete, class: "btn btn-danger" %>
+                <%= link_to "完了", task_path(task), method: :delete, class: "btn btn-danger", data: {"turbolinks" => false} %>
               </td>
               <td>
-                <%= link_to "編集", edit_task_path(task), class: "btn btn-success" %>
+                <%= link_to "編集", edit_task_path(task), class: "btn btn-success", data: {"turbolinks" => false} %>
               </td>
             </tr>
           <% end %>

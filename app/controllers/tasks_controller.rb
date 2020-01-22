@@ -18,6 +18,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path
     else
+      @tasks = current_user.tasks.all.page(params[:page]).per(10)
       render 'index'
     end
   end
