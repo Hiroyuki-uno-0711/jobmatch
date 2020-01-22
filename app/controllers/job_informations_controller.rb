@@ -1,8 +1,14 @@
 class JobInformationsController < ApplicationController
 
   before_action :authenticate_user!
+
+  # 他ユーザーの情報は更新できないよう設定
   before_action :correct_user, only: [:edit, :update, :destroy]
+
+  # 求職者（一般ユーザー）は全ページに遷移できない設定
   before_action :jobhunter_user, only: [:new]
+
+
 
   def show
     @job_information = JobInformation.find(params[:id])

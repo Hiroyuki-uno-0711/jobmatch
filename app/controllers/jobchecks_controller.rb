@@ -1,9 +1,12 @@
 class JobchecksController < ApplicationController
   before_action :authenticate_user!
+
+  # キャリアアドバイザーは全ページに遷移できない設定
   before_action :career_advisor
 
-  def top
-  end
+  # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
+  before_action :jobhunter_user_blank
+
 
   def manufacturer_sales
 
@@ -587,6 +590,16 @@ class JobchecksController < ApplicationController
 
   end
 
+
+  def jobhunter_user_blank
+    user = current_user
+    if user.user_status == '一般ユーザー'
+      if user.age.blank? or user.career.blank? or user.career_age.blank?
+        flash[:error] = "※「年齢」、「経験職種」、「経験年数」をすべて登録してください"
+        redirect_to form_user_path(user)
+      end
+    end
+  end
 
 
   private

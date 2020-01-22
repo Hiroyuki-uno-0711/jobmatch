@@ -2,19 +2,20 @@ ja:
   activerecord:
     models:
       job_information: 求人票
+      user: ユーザー情報
+      task: タスク管理
     attributes:
       job_information:
         title: 求人タイトル
         summary: 求人概要
         detail: 求人詳細
         company: 企業名
-
-
-    # models:
-    #   user: ユーザー情報
-    # attributes:
-    #   user:
-    #     last_name: 苗字
-    #     first_name: 名前
-    #     last_name_kana: 苗字(カナ)
-    #     first_name_kana: 名前(カナ)
+      user:
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: 苗字(カナ)
+        first_name_kana: 名前(カナ)
+        phone_number: 電話番号
+      task:
+        task_content: タスク内容
+        complete_date: 完了日
