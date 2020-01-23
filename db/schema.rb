@@ -88,8 +88,6 @@ ActiveRecord::Schema.define(version: 2020_01_22_045907) do
     t.datetime "updated_at", null: false
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
-    t.index [nil], name: "index_notifications_on_book_id"
-    t.index [nil], name: "index_notifications_on_comment_id"
   end
 
   create_table "relationships", force: :cascade do |t|

@@ -9,7 +9,6 @@ class JobchecksController < ApplicationController
 
 
 
-
   # メーカー商社営業
   def manufacturer_sales
 
@@ -303,7 +302,7 @@ class JobchecksController < ApplicationController
   end
 
 
-　# （商品サービス企画）
+  # （商品サービス企画）
   def service_planning
 
     service_planning = 0
@@ -636,7 +635,7 @@ class JobchecksController < ApplicationController
   end
 
 
-  # 経験年収が長いほど合格率が高くなるように設定
+  # 経験年数が長いほど合格率が高くなるように設定
   def calc_career_age(career_age)
     case career_age
      when 1
@@ -651,7 +650,7 @@ class JobchecksController < ApplicationController
   end
 
 
-　# キャリアアドバイザーは全ページに遷移できない設定
+  # キャリアアドバイザーは全ページに遷移できない設定
   def career_advisor
     if current_user.user_status == 'キャリアアドバイザー'
       redirect_to root_path
