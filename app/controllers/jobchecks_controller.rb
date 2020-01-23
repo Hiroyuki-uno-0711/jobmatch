@@ -8,6 +8,9 @@ class JobchecksController < ApplicationController
   before_action :jobhunter_user_blank
 
 
+
+
+  # メーカー商社営業
   def manufacturer_sales
 
     manufacturer_sales = 0
@@ -62,6 +65,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # (IT営業)
   def it_sales
 
     it_sales = 0
@@ -113,6 +117,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （不動産営業）
   def real_estate_sales
 
     real_estate_sales = 0
@@ -149,6 +154,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （MR）
   def mr_sales
 
     mr_sales = 0
@@ -189,6 +195,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （人材営業）
   def human_resources_sales
 
     human_resources_sales = 0
@@ -250,6 +257,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （Web広告営業）
   def webad_sales
 
     webad_sales = 0
@@ -295,6 +303,7 @@ class JobchecksController < ApplicationController
   end
 
 
+　# （商品サービス企画）
   def service_planning
 
     service_planning = 0
@@ -332,6 +341,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （事務）
   def office_work
 
     office_work = 0
@@ -377,6 +387,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （秘書）
   def secretary
 
     secretary = 0
@@ -400,6 +411,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （人事）
   def human_resources
 
     human_resources = 0
@@ -441,6 +453,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （経理）
   def accounting
 
     accounting = 0
@@ -472,6 +485,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （総務）
   def general_affairs
 
     general_affairs = 0
@@ -505,6 +519,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # (Webエンジニア)
   def system_engineer
 
     system_engineer = 0
@@ -534,6 +549,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # （販売サービス）
   def sales_staff
 
     sales_staff = 0
@@ -568,6 +584,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # (記者／ライター)
   def writer
 
     writer = 0
@@ -591,6 +608,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
   def jobhunter_user_blank
     user = current_user
     if user.user_status == '一般ユーザー'
@@ -605,6 +623,7 @@ class JobchecksController < ApplicationController
   private
 
 
+  # 年齢に応じて合格率が変動するように設定
   def calc_age(age)
     case age
      when 20, 21, 22, 23, 24
@@ -617,6 +636,7 @@ class JobchecksController < ApplicationController
   end
 
 
+  # 経験年収が長いほど合格率が高くなるように設定
   def calc_career_age(career_age)
     case career_age
      when 1
@@ -631,10 +651,12 @@ class JobchecksController < ApplicationController
   end
 
 
+　# キャリアアドバイザーは全ページに遷移できない設定
   def career_advisor
     if current_user.user_status == 'キャリアアドバイザー'
       redirect_to root_path
     end
   end
+
 
 end
