@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Jobmatching</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css" >
+    <script>
+      $(function() {
+        $("#datepicker").datepicker();
+      });
+    </script>
+  </head>
+
+  <header>
+
+      <div class="header-box clearfix">
+
+        <!-- ロゴ部分 ここから-->
+        <h2 class="title-box">
+
+          <% if user_signed_in? %>
+           <%= link_to "Job Matching", user_path(current_user), class: "text-decoration",:style=>"color:white;", data: {"turbolinks" => false} %>
+
+          <% else %>
+          <%= link_to "Job Matching", root_path, :style=>"color:white;", data: {"turbolinks" => false} %>
+
+          <% end %>
+        </h2>
+        <!-- ロゴ部分　ここまで -->
+
+
+　　　　<!-- ヘッダーリスト　ここから -->
+        <ul class="nav-box clearfix">
+
+          <% if user_signed_in? %>
+
+            <li class="navlist">
+              <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt", :style=>"color:white;" %>
+            </li>
+
+            <li class="navlist">
+              <%= link_to " About", about_path, class: "fas fa-file", :style=>"color:white;", data: {"turbolinks" => false} %>
+            </li>
+
+            <li class="navlist">
+              <% if unchecked_notifications.any? %>
+                <%= link_to " お知らせ（新着あり）", notifications_path, class: "fas fa-bell", :style=>"color:orange;", data: {"turbolinks" => false} %>
+              <% else %>
+                <%= link_to " お知らせ", notifications_path, class: "fas fa-bell", :style=>"color:white;", data: {"turbolinks" => false} %>
+              <% end %>
+            </li>
+
+            <li class="navlist">
+              <%= link_to " マイページ", user_path(current_user), class: "fas fa-user", :style=>"color:white;", data: {"turbolinks" => false} %>
+            </li>
+
+          <% else %>
+
+            <li class="navlist">
+              <%= link_to " About", about_path, class: "fas fa-file", :style=>"color:white;", data: {"turbolinks" => false} %>
+            </li>
+
+            <li class="navlist">
+              <%= link_to ' ログイン', new_user_session_path, class: "fas fa-sign-in-alt", :style=>"color:white;"%>
+            </li>
+
+            <li class="navlist">
+              <%= link_to ' 新規登録', new_user_registration_path, class: "fas fa-user-plus", :style=>"color:white;"%>
+            </li>
+
+          <% end %>
+        </ul>
+        <!-- ヘッダーリスト　ここまで -->
+
+      </div>
+    </header>
+
+  <body>
+    <div class="main-visual">
+      <div class="container margin-bottom-50px">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-1"></div>
+                <div class="col-xs-10">
+
+
+                    <div class="margin-top"><center><b class="font-size2 color-white">Welcom to</b></center></center></div>
+                    <div><center><b class="font-size1 color-white">Job Matching</b></center></center></div>
+                    <br>
+                    <table class="center">
+                      <tr>
+                        <td class="td-padding-5">
+                          <%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary btn-lg btn_size font-size3", :style=> "width:100%;" %>
+                        </td>
+                        <td class="td-padding-6">
+                          <%= link_to 'ログイン', new_user_session_path, class: "btn btn-danger btn-lg btn_size font-size3", :style=> "width:100%;" %>
+                        </td>
+                      </tr>
+                    </table>
+
+
+                </div>
+              <div class="col-xs-1"></div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
