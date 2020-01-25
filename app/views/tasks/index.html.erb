@@ -71,6 +71,6 @@
             </tr>
           <% end %>
         </tbody>
-      <%= paginate @tasks %>
+      <%= paginate @tasks, data: {"turbolinks" => false} %>
     </table>
 </div>

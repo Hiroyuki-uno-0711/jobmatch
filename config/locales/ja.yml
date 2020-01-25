@@ -63,3 +63,10 @@ ja:
       not_saved:
         one: "※入力に誤りがございます"
         other: "※入力に誤りがございます"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

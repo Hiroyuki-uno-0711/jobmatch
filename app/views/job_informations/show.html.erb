@@ -18,6 +18,7 @@
   </div>
 
   <div class="col-xs-7">
+
     <h4>求人情報</h4>
     <table class="table table-striped">
       <tbody>
@@ -51,10 +52,17 @@
         </tr>
       </tbody>
     </table>
+　　
+    <% if current_user.user_status == '一般ユーザー' %>
 
-    <div id="favorite_btn">
-      <%= render 'favorite_form', job_information: @job_information %>
-    </div>
+      <div id="favorite_btn">
+        <%= render 'favorite_form', job_information: @job_information %>
+      </div>
+
+    <% elsif @job_information.user == current_user %>
+
+      <div><%= link_to "編集する", edit_job_information_path(@job_information), class: "btn btn-success btn-lg", :style=> "width:30%;" %></div>
+    <% end %>
 
   </div>
 </div>
