@@ -212,7 +212,7 @@
       <h4>実績</h4>
       <div class="box1">
         <% if @user.result.blank? && current_user == @user %>
-          <p>※「マイページ編集」より職歴を記載ください。</p>
+          <p>※「マイページ編集」より実績を記載ください。</p>
 
         <% elsif @user.result.blank? && current_user != @user %>
           <p>※まだ記載がありません。</p>

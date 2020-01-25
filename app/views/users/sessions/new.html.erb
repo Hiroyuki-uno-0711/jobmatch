@@ -1,8 +1,12 @@
 <h2 class="margin-bottom-35px">ユーザーログイン</h2>
 
-<% flash.each do |msg| %>
-  <%= msg %>
-<% end %>
+<!-- エラーメッセージ -->
+<div class="margin-bottom-25px">
+  <% flash.each do |msg| %>
+    <%= msg[1] %>
+  <% end %>
+</div>
+
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 

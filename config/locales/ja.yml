@@ -9,7 +9,7 @@ ja:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
-      invalid: "emailかパスワードの記載がございません"
+      invalid: "emailかパスワードの情報が間違っています"
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "emailかパスワードの情報が間違っています"
