@@ -17,14 +17,14 @@ module CommonActions
 
     if user.user_status == 'キャリアアドバイザー'
       if user.age.blank? or user.expert.blank? or user.comment.blank?
-        flash[:error] = "※「年齢」、「専門職種」、「挨拶文」をすべて登録してください"
+        flash[:error] = "※「年齢」、「専門領域」、「あいさつ文」をすべて登録してください"
         redirect_to form_user_path(user)
       end
     end
   end
 
 
-
+  # 一般ユーザーは「キャリアアドバイザー」専用のページには遷移できないよう設定
   def jobhunter_user
     if current_user.user_status == '一般ユーザー'
       redirect_to root_path

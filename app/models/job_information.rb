@@ -1,4 +1,5 @@
 class JobInformation < ApplicationRecord
+  # 求人票モデル
 
   belongs_to :user
 

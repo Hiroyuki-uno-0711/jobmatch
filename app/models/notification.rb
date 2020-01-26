@@ -1,4 +1,5 @@
 class Notification < ApplicationRecord
+  # お知らせ（通知）モデル
 
   default_scope -> { order(created_at: :desc) }
   belongs_to :job_information, optional: true

@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  # タスク管理モデル
 
   belongs_to :user
 
