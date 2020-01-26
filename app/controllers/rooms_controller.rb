@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
+
   before_action :authenticate_user!
+
 
   def show
     @room = Room.find(params[:id])
@@ -8,9 +10,10 @@ class RoomsController < ApplicationController
       @message = Message.new
       @entries = @room.entries
     else
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
     end
   end
+
 
   def create
     @room = Room.create

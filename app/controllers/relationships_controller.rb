@@ -18,6 +18,8 @@ class RelationshipsController < ApplicationController
 
   end
 
+
+
   def destroy
     @user = User.find(params[:user_id])
     follow = current_user.active_relationships.find_by(follower_id: params[:user_id])
@@ -25,5 +27,6 @@ class RelationshipsController < ApplicationController
 
     render 'users/index.js.erb'
   end
+
 
 end

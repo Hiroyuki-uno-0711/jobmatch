@@ -1,7 +1,9 @@
 class FavoritesController < ApplicationController
 
-  # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
-  before_action :jobhunter_user_blank
+  include CommonActions
+  # 一般ユーザーは「年齢」、「経験職種」、「経験年数」を登録していないと全ページに遷移できない設定
+  # キャリアアドバイザーは「年齢」、「専門職種」、「挨拶文」を登録していないと全ページに遷移できない設定
+  before_action :user_blank, only: [:show, :edit, :search, :follows, :followers, :favorites]
 
 
   def create
@@ -33,15 +35,5 @@ class FavoritesController < ApplicationController
   end
 
 
-
-  def jobhunter_user_blank
-    user = current_user
-    if user.user_status == '一般ユーザー'
-      if user.age.blank? or user.career.blank? or user.career_age.blank?
-        flash[:error] = "※「年齢」、「経験職種」、「経験年数」をすべて登録してください"
-        redirect_to form_user_path(user)
-      end
-    end
-  end
 
 end

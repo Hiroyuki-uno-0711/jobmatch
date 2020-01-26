@@ -4,8 +4,9 @@ class JobchecksController < ApplicationController
   # キャリアアドバイザーは全ページに遷移できない設定
   before_action :career_advisor
 
+  include CommonActions
   # 一般ユーザーは、「年齢」、「経験職種」、「経験年数」を入力していないと全ページに遷移できない設定
-  before_action :jobhunter_user_blank
+  before_action :user_blank
 
 
 

@@ -5,7 +5,8 @@ class JobInformationsController < ApplicationController
   # 他ユーザーの情報は更新できないよう設定
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  # 求職者（一般ユーザー）は全ページに遷移できない設定
+  include CommonActions
+  # 求職者（一般ユーザー）は求人追加ページに遷移できない設定
   before_action :jobhunter_user, only: [:new]
 
 
@@ -59,13 +60,11 @@ class JobInformationsController < ApplicationController
   end
 
 
+
   private
 
 
-  def job_information_params
-    params.require(:job_information).permit(:genre, :area, :income, :company, :title, :summary, :detail, :job_image)
-  end
-
+  # 他ユーザーの情報は更新できないよう設定
   def correct_user
       job_information = JobInformation.find(params[:id])
       user = job_information.user
@@ -75,10 +74,12 @@ class JobInformationsController < ApplicationController
       end
   end
 
-  def jobhunter_user
-    if current_user.user_status == '一般ユーザー'
-      redirect_to root_path
-    end
+
+
+  def job_information_params
+    params.require(:job_information).permit(:genre, :area, :income, :company, :title, :summary, :detail, :job_image)
   end
+
+
 
 end
