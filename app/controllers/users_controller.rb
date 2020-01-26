@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @job_informations = @user.job_informations.all.page(params[:page]).per(10)
+    @job_informations = @user.job_informations.all.page(params[:page]).per(8)
 
     # チャット関連のアクション
     @currentUserEntry = Entry.where(user_id: current_user.id)

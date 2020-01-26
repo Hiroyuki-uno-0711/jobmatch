@@ -61,7 +61,7 @@
           <% @job_informations.each do |job_information| %>
             <tr>
               <td>
-                <%= link_to job_information_path(job_information) do %>
+                <%= link_to job_information_path(job_information), :target=>["_blank"] do %>
                   <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
                 <% end %>
               </td>
