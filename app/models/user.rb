@@ -21,9 +21,12 @@ class User < ApplicationRecord
   attachment :profile_image
 
 
-  # 一般ユーザー情報項目
+  # ユーザー共通情報項目
   enum user_status: {一般ユーザー: 1, キャリアアドバイザー: 2}
   enum gender: {男性: 1, 女性: 2}
+
+
+  # 一般ユーザー情報項目
   enum career: {有形営業: 1, 無形営業: 2, 商品サービス企画: 3, 物流倉庫管理: 4, 一般事務: 5, 人事: 6, 経理: 7, 総務: 8, システムエンジニア: 9, 販売サービス: 10}
 
 

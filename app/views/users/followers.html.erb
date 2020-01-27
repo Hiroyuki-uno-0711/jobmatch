@@ -3,10 +3,18 @@
 <table class="table table-striped">
 
   <thead>
+
     <th></th>
     <th>ユーザー名</th>
     <th>性別</th>
     <th>年齢</th>
+
+    <% if current_user.user_status == '一般ユーザー' %>
+      <th>担当領域</th>
+    <% else %>
+      <th>経験職種</th>
+    <% end %>
+
   </thead>
 
   <% @users.each do |user| %>
@@ -29,6 +37,16 @@
       <td>
         <%= user.age %>歳
       </td>
+
+      <% if current_user.user_status == '一般ユーザー' %>
+        <td>
+          <%= user.expert %>
+        </td>
+      <% else %>
+        <td>
+          <%= user.career %>
+        </td>
+      <% end %>
 
     </tr>
   <% end %>

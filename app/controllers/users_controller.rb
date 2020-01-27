@@ -5,18 +5,17 @@ class UsersController < ApplicationController
   # 他ユーザーの情報は更新できないよう設定
   before_action :correct_user, only: [:edit, :update, :destroy, :form]
 
-  # 一般ユーザは、他の一般ユーザーの情報を閲覧できないように設定
-  before_action :jobhunter_user_restriction, only: [:show, :favorites, :form, :follows, :followers]
+  # 自分と同じステータスを持つ他ユーザーの情報を閲覧できないように設定
+  before_action :same_status_user, only: [:show, :favorites, :form, :follows, :followers]
+
+  # 一般ユーザーは「ユーザー検索」ページへ遷移できないよう設定
+  before_action :jobhunter_user, only: [:search]
 
 
   include CommonActions
   # 一般ユーザーは「年齢」、「経験職種」、「経験年数」を登録していないと全ページに遷移できない設定
   # キャリアアドバイザーは「年齢」、「専門職種」、「挨拶文」を登録していないと全ページに遷移できない設定
   before_action :user_blank, only: [:show, :edit, :search, :follows, :followers, :favorites]
-
-  # 一般ユーザーは「ユーザー検索」ページへ遷移できないよう設定
-  before_action :jobhunter_user, only: [:search]
-
 
 
 
@@ -126,11 +125,16 @@ class UsersController < ApplicationController
   end
 
 
-  def jobhunter_user_restriction
+  def same_status_user
     @user = User.find(params[:id])
     if current_user != @user && current_user.user_status == '一般ユーザー' && @user.user_status == '一般ユーザー'
       redirect_to root_path
     end
+
+    if current_user != @user && current_user.user_status == 'キャリアアドバイザー' && @user.user_status == 'キャリアアドバイザー'
+      redirect_to root_path
+    end
+
   end
 
 
