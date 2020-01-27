@@ -15,6 +15,7 @@ class RoomsController < ApplicationController
   end
 
 
+
   # チャットルームを作成させる
   def create
     @room = Room.create
