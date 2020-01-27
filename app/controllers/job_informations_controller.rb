@@ -70,6 +70,9 @@ class JobInformationsController < ApplicationController
   # 求人検索ページを表示させる
   def search
     @job_informations = JobInformation.where("genre = ?", params[:genre]).where(income: params[:income_from]..params[:income_to]).where("area = ?", params[:area]).page(params[:page]).per(10)
+    if @job_informations.blank? && params[:genre] && params[:income_from] && params[:income_to] && params[:area]
+      @not_exit = '該当する求人がございません。再度、条件を変えて検索してください。'
+    end
   end
 
 

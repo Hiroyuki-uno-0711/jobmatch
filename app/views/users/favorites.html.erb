@@ -13,7 +13,7 @@
     <tr>
 
       <td>
-        <%= link_to job_information_path(job.job_information) do %>
+        <%= link_to job_information_path(job.job_information), :target=>["_blank"] do %>
           <%= attachment_image_tag job.job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
         <% end %>
       </td>
