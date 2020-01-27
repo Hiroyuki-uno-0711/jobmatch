@@ -6,6 +6,9 @@ class FavoritesController < ApplicationController
   before_action :user_blank, only: [:show, :edit, :search, :follows, :followers, :favorites]
 
 
+
+
+  # お気に入り(イイネ)と通知情報を保存
   def create
     # お気に入り保存
     @job_information = JobInformation.find(params[:job_information_id])
@@ -20,18 +23,17 @@ class FavoritesController < ApplicationController
 
     # アクションメーラー起動
     EmailDeliverJob.perform_later(@job_information.user.email, "あなたの求人に興味ボタンが押されました。マイページより詳細をご確認ください。")
-
   end
 
 
 
+  # お気に入り(イイネ)を削除
   def destroy
     @job_information = JobInformation.find(params[:job_information_id])
     favorite = current_user.favorites.find_by(job_information_id: @job_information.id)
     favorite.destroy
 
     render 'job_informations/index.js.erb'
-
   end
 
 

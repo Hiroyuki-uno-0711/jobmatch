@@ -1,23 +1,25 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-    <%= link_to user_path(visitor) do %>
-      <%= visitor.last_name %><%= visitor.first_name %>
-    <% end %>
 
-    <% case notification.action
-      when 'follow' %>
-      <%= "さんがあなたをフォローしました" %>
 
-    <% when 'like' %>
-      <%= "さんが" %>
-      <%= link_to notification.job_information.title, notification.job_information, style: "font-weight: bold;" %>
-      <%= "に興味を持ちました" %>
+<%= link_to user_path(visitor) do %>
+  <%= visitor.last_name %><%= visitor.first_name %>
+<% end %>
 
-    <% when notification.action
-      when 'message' %>
-      <%= "さんからメッセージが届きました" %>
+<% case notification.action
+  when 'follow' %>
+  <%= "さんがあなたをフォローしました" %>
 
-    <% end %>
+<% when 'like' %>
+  <%= "さんが" %>
+  <%= link_to notification.job_information.title, notification.job_information, style: "font-weight: bold;" %>
+  <%= "に興味を持ちました" %>
 
-    <%= notification.created_at.strftime("%Y-%m-%d") %>
+<% when notification.action
+  when 'message' %>
+  <%= "さんからメッセージが届きました" %>
+
+<% end %>
+
+<%= notification.created_at.strftime("%Y-%m-%d") %>

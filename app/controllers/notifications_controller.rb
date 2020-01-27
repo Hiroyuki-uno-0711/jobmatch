@@ -6,6 +6,7 @@ class NotificationsController < ApplicationController
   before_action :user_blank
 
 
+  # お知らせ（通知）ページを表示させる
   def index
     @notifications = current_user.passive_notifications.page(params[:page]).per(20)
     @notifications.where(checked: false).each do |notification|

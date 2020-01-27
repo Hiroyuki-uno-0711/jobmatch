@@ -41,6 +41,7 @@ class User < ApplicationRecord
   # タスク管理機能関連
   has_many :tasks, dependent: :destroy
 
+
   # フォロー機能関連
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower
@@ -48,7 +49,7 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
 
-  def followed_by?(user)
+  def followed_by?(user) #既にフォローしているか検索
     passive_relationships.find_by(following_id: user.id).present?
   end
 

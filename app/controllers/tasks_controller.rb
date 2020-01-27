@@ -12,17 +12,20 @@ class TasksController < ApplicationController
 
 
 
+  # タスク一覧ページを表示させる
   def index
     @task = Task.new
     @tasks = current_user.tasks.all.page(params[:page]).per(10)
   end
 
 
+  # タスク編集ページを表示させる
   def edit
     @task = Task.find(params[:id])
   end
 
 
+  # タスク内容を新規追加させる
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
@@ -36,6 +39,7 @@ class TasksController < ApplicationController
   end
 
 
+  # タスク内容を更新させる
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
@@ -46,6 +50,7 @@ class TasksController < ApplicationController
   end
 
 
+  # タスクを削除（完了）させる
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
@@ -53,9 +58,11 @@ class TasksController < ApplicationController
   end
 
 
+
   private
 
 
+  # タスク内容を追加する際に許可するカラム
   def task_params
     params.require(:task).permit(:task_content, :complete_date)
   end

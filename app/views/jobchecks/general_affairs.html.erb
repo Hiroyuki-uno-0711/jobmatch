@@ -20,20 +20,4 @@
 </div>
 
 
-<div class="row">
-  <div class="col-xs-3"></div>
-    <div class="col-xs-6">
-      <div class="memo-box">
-        <span class="box-title">一口メモ</span>
-        <p><%= @memo %></p>
-      </div>
-    </div>
-    <div class="col-xs-3"></div>
-</div>
-
-
-<div>
-  <center>
-    <%= link_to '転職診断TOPにもどる', jobcheck_top_path, class: "btn btn-primary btn-lg margin-bottom-50px", :style=> "width:30%;" %>
-  </center>
-</div>
+<%= render 'jobcheck', memo: @memo %>

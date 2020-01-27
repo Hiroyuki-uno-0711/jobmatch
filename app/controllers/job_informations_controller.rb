@@ -16,16 +16,20 @@ class JobInformationsController < ApplicationController
 
 
 
+
+  # 求人詳細ページを表示させる
   def show
     @job_information = JobInformation.find(params[:id])
   end
 
 
+  # 求人追加ページを表示させる
   def new
     @job_information= JobInformation.new
   end
 
 
+  # 求人を新規追加させる
   def create
     @job_information= JobInformation.new(job_information_params)
     @job_information.user_id = current_user.id
@@ -38,11 +42,13 @@ class JobInformationsController < ApplicationController
   end
 
 
+  # 求人編集ページを表示させる
   def edit
     @job_information = JobInformation.find(params[:id])
   end
 
 
+  # 求人情報を更新させる
   def update
     @job_information = JobInformation.find(params[:id])
     if @job_information.update(job_information_params)
@@ -53,6 +59,7 @@ class JobInformationsController < ApplicationController
   end
 
 
+  # 求人を削除させる
   def destroy
     @job_information = JobInformation.find(params[:id])
     @job_information.destroy
@@ -60,6 +67,7 @@ class JobInformationsController < ApplicationController
   end
 
 
+  # 求人検索ページを表示させる
   def search
     @job_informations = JobInformation.where("genre = ?", params[:genre]).where(income: params[:income_from]..params[:income_to]).where("area = ?", params[:area]).page(params[:page]).per(10)
   end
@@ -67,6 +75,7 @@ class JobInformationsController < ApplicationController
 
 
   private
+
 
 
   # 他ユーザーの情報は更新できないよう設定
@@ -80,7 +89,7 @@ class JobInformationsController < ApplicationController
   end
 
 
-
+  # 求人を追加する際に許可するカラム
   def job_information_params
     params.require(:job_information).permit(:genre, :area, :income, :company, :title, :summary, :detail, :job_image)
   end

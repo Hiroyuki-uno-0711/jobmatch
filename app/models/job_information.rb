@@ -26,10 +26,14 @@ class JobInformation < ApplicationRecord
   # イイネ機能関連
   has_many :favorites, dependent: :destroy
 
+
+  # すでに「いいね」されているか検索
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
 
+
+  # イイネされた際に通知モデルを保存
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and job_information_id = ? and action = ? ", current_user.id, user_id, id, 'like'])

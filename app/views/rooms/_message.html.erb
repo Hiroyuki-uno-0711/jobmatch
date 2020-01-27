@@ -5,16 +5,22 @@
         <div class="chat-box">
 
           <table>
+
             <tr>
+
               <td class="td-padding-3">
                 <%= attachment_image_tag m.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
               </td>
+
               <td class="td-padding-3">
                 <div class="hukidashi">
                   <%= m.content %>
                 </div>
               </td>
+
             </tr>
+
+
             <tr>
               <td class="td-padding-4"></td>
               <td class="td-padding-4">
