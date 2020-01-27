@@ -64,7 +64,11 @@
             <th>経験年数</th>
           </tr>
         </thead>
+
         <tbody>
+
+          <p class="search"><%= @not_exit %></p>
+
           <% @users.each do |user| %>
             <tr>
               <td>

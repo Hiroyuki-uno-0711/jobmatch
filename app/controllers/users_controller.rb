@@ -79,6 +79,9 @@ class UsersController < ApplicationController
   # ユーザー検索ページを表示させる
   def search
     @users = User.where("career = ?", params[:career]).where("career_age >= ?", params[:career_age]).where(age: params[:age_from]..params[:age_to]).page(params[:page]).per(10)
+    if @users.blank? && params[:career] && params[:career_age] && params[:age_from] && params[:age_to]
+      @not_exit = '該当するユーザーがいません。再度、条件を変えて検索してください。'
+    end
   end
 
 
