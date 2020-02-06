@@ -3,6 +3,7 @@ class JobInformation < ApplicationRecord
 
   belongs_to :user
 
+
   # Gem（refile）関連
   attachment :job_image
 
