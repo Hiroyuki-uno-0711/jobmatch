@@ -37,18 +37,65 @@
 <kbd>![CATOP](https://user-images.githubusercontent.com/56952436/74013060-fa522700-49ce-11ea-8e0e-c00e13bb3abc.JPG)</kbd>
 <br>
 <br>
-お知らせページより、イイネやフォローされた通知を確認することができ、登録メールアドレスにも通知が届きます。
+お知らせページより、イイネやフォローされた通知を確認することができます。
 <kbd>![お知らせ](https://user-images.githubusercontent.com/56952436/74013062-faeabd80-49ce-11ea-86b6-81605e837ffb.JPG)</kbd>
+<br>
+<br>
+お知らせは、登録メールアドレス宛にも通知が届きます。
+<kbd>![メール](https://user-images.githubusercontent.com/56952436/74014311-b44a9280-49d1-11ea-9a09-c61984d9069c.JPG)</kbd>
 <br>
 <br>
 キャリアアドバイザーは、求人を登録し掲載することができます。
 <kbd>![求人追加](https://user-images.githubusercontent.com/56952436/74013053-f9b99080-49ce-11ea-8784-79ba85892b32.JPG)</kbd>
 <br>
 <br>
-
-
-
+担当する求人にマッチする求職者を検索し、アプローチすることができます。
+<kbd>![ユーザー一覧](https://user-images.githubusercontent.com/56952436/74013066-fc1bea80-49ce-11ea-85c5-642223a963f9.JPG)</kbd>
+<br>
+<br>
+細かい業務を可視化するため、タスクを登録し管理することができます。
+<kbd>![タスク管理](https://user-images.githubusercontent.com/56952436/74013064-fb835400-49ce-11ea-8608-b5fba0e281b6.JPG)</kbd>
+<br>
+<br>
 # technique
-
+＜取り入れた技術＞<br>
+【HTML/CSS】<br>
+・HTML/CSS<br>
+・Bootstrap<br>
+ <br>
+【JavaScript】<br>
+・jQuery　（Datepickerカレンダー表示など）<br>
+・Ajax　（「イイネ」や「フォロー」の非同期処理）<br>
+ <br>
+【Ruby/Rails】<br>
+・投稿機能<br>
+・プルダウン検索機能<br>
+・イイネ機能<br>
+・フォロー機能<br>
+・通知機能<br>
+・Action Cable　（チャット）<br>
+・Action Mailer　（通知機能）<br>
+・Active Job<br>
+・部分テンプレート<br>
+・case文を使用した処理<br>
+・Rspec　（テストコード）<br>
+ <br>
+【Gem】<br>
+・devise （ログイン機能）<br>
+・refile　（画像投稿機能）<br>
+・kaminari　（ページャー実装）<br>
+・rails-i18n　（エラーメッセージ等の日本語化）<br>
+ <br>
+【インフラ(AWSなど)】<br>
+・EC2<br>
+・RDS<br>
+<br>
+<br>
 # Sample user
+【一般ユーザー】<br>
+ID：aaa@aaa  PASS：aaaaaa<br>
+【CA側】<br>
+ID：jobcheck.app@gmail.com　PASS：bbbbbb<br>
+<br>
+<br>
 
