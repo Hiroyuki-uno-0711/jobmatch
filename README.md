@@ -33,8 +33,10 @@
 <kbd>![診断結果](https://user-images.githubusercontent.com/56952436/74013055-f9b99080-49ce-11ea-97ab-eae70bee3efb.JPG)</kbd>
 <br>
 <br>
+<br>
+<br>
 キャリアアドバイザーマイページ
-<kbd>![CATOP](https://user-images.githubusercontent.com/56952436/74013060-fa522700-49ce-11ea-8e0e-c00e13bb3abc.JPG)</kbd>
+<kbd>![CATOP](https://user-images.githubusercontent.com/56952436/74015055-3dae9480-49d3-11ea-8313-cebf45b890af.JPG)</kbd>
 <br>
 <br>
 お知らせページより、イイネやフォローされた通知を確認することができます。
