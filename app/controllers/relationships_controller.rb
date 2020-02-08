@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
     follow = current_user.active_relationships.build(follower_id: params[:user_id])
     follow.save
 
-    # 通知保存
+    # 通知レコードを作成
     follow.create_notification_follow!(current_user)
 
     # 非同期設定

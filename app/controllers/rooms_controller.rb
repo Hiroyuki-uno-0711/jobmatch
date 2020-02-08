@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
 
   before_action :authenticate_user!
 
+
+
   # チャットルームページを表示させる
   def show
     @room = Room.find(params[:id])

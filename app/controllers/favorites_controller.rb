@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.new(job_information_id: @job_information.id)
     favorite.save
 
-    # 通知保存
+    # 通知レコードを作成
     notification = @job_information.create_notification_like!(current_user)
 
     # 非同期設定
