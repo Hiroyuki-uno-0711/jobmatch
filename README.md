@@ -59,7 +59,7 @@
 <kbd>![タスク管理](https://user-images.githubusercontent.com/56952436/74013064-fb835400-49ce-11ea-8608-b5fba0e281b6.JPG)</kbd>
 <br>
 <br>
-# technique
+# Technique
 ＜取り入れた技術＞<br>
 【HTML/CSS】<br>
 ・HTML/CSS<br>
