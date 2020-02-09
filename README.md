@@ -76,7 +76,7 @@
 ・フォロー機能<br>
 ・通知機能<br>
 ・Action Cable　（チャット）<br>
-・Action Mailer　（通知機能）<br>
+・Action Mailer　（メール通知機能）<br>
 ・Active Job<br>
 ・部分テンプレート<br>
 ・case文を使用した処理<br>
