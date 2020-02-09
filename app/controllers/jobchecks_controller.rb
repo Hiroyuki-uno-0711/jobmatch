@@ -633,11 +633,11 @@ class JobchecksController < ApplicationController
   def calc_age(age)
     case age
      when 20, 21, 22, 23, 24
-      0.8
-     when 25, 26, 27
       0.9
+     when 25, 26, 27
+      0.95
      when 28, 29
-      0.8
+      0.9
     end
   end
 
