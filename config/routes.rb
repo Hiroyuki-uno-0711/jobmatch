@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'tasks/index'
-  get 'tasks/edit'
   # デバイス関連
   devise_for :users, controllers: {
     sessions: 'users/sessions',
