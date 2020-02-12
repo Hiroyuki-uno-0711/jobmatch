@@ -7,7 +7,6 @@ class FavoritesController < ApplicationController
 
 
 
-
   # お気に入り(イイネ)と通知情報を保存
   def create
     # お気に入り保存

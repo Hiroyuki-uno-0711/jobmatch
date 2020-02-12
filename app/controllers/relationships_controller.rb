@@ -13,8 +13,7 @@ class RelationshipsController < ApplicationController
     # 非同期設定
     render 'users/index.js.erb'
 
-    # inquiry = Inquiry.new(name: "運営部", message: "ユーザーよりフォローされました。マイページより詳細をご確認ください。", email: User.find(params[:user_id]).email)
-    # InquiryMailer.send_mail(inquiry).deliver_now
+    # アクションメーラー起動
     EmailDeliverJob.perform_later(User.find(params[:user_id]).email, "ユーザーよりフォローされました。マイページより詳細をご確認ください。")
   end
 
