@@ -96,7 +96,7 @@
 # Sample user
 【一般ユーザー】<br>
 ID：aaa@aaa  PASS：aaaaaa<br>
-【CA側】<br>
+【キャリアドバイザー】<br>
 ID：jobcheck.app@gmail.com　PASS：bbbbbb<br>
 <br>
 <br>
