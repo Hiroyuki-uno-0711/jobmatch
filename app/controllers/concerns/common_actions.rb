@@ -2,7 +2,6 @@ module CommonActions
 
   extend ActiveSupport::Concern
 
-
   # 一般ユーザーは「年齢」、「経験職種」、「経験年数」を登録していないと全ページに遷移できない設定
   # キャリアアドバイザーは「年齢」、「専門職種」、「挨拶文」を登録していないと全ページに遷移できない設定
   def user_blank
@@ -23,7 +22,6 @@ module CommonActions
       end
     end
   end
-
 
 
   # 一般ユーザーは「キャリアアドバイザー」専用のページには遷移できないよう設定
