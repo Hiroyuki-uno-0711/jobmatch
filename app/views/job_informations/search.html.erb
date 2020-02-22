@@ -64,20 +64,25 @@
 
           <% @job_informations.each do |job_information| %>
             <tr>
+
               <td>
                 <%= link_to job_information_path(job_information), :target=>["_blank"] do %>
                   <%= attachment_image_tag job_information, :job_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50", class: "img-border" %>
                 <% end %>
               </td>
+
               <td>
                 <%= job_information.title %>
               </td>
+
               <td>
                 <%= job_information.company %>
               </td>
+
               <td>
                 <%= job_information.created_at.strftime("%Y-%m-%d") %>
               </td>
+              
             </tr>
           <% end %>
         </tbody>
