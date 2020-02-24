@@ -642,7 +642,6 @@ class JobchecksController < ApplicationController
   end
 
 
-
   # 経験年数が長いほど合格率が高くなるように設定
   def calc_career_age(career_age)
     case career_age
